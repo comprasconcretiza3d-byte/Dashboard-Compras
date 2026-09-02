@@ -761,17 +761,33 @@
           (relatório de Apropriação), não do orçamento. Use isso pra checar se o valor previsto no MRP de cada
           fase ainda bate com o que o mercado está cobrando agora.
         </p>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px;background:var(--steel-light);border:1px solid #C9D6E0;border-radius:8px;padding:10px 14px;">
+          <label for="benchmarkAreaInput" style="font-size:12.5px;font-weight:600;white-space:nowrap;">📐 Simular uma casa de</label>
+          <input type="number" id="benchmarkAreaInput" value="200" min="1" step="1"
+            style="width:80px;padding:6px 8px;border:1px solid var(--line);border-radius:6px;font-family:'IBM Plex Mono';font-size:13px;">
+          <span style="font-size:12.5px;font-weight:600;">m²</span>
+          <span style="font-size:11.5px;color:var(--muted);margin-left:6px;">— o investimento estimado por fase aparece na coluna ao lado, atualizado na hora</span>
+        </div>
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
             <thead>
               <tr style="text-align:left;border-bottom:2px solid var(--line);">
                 <th style="padding:9px 8px;">Fase</th>
                 <th style="padding:9px 8px;">R$/m² hoje (mercado)</th>
+                <th style="padding:9px 8px;">Investimento estimado <span id="benchmarkAreaLabel">(200 m²)</span></th>
                 <th style="padding:9px 8px;">Baseado em</th>
                 <th style="padding:9px 8px;"></th>
               </tr>
             </thead>
             <tbody id="benchmarkTableBody"></tbody>
+            <tfoot>
+              <tr style="border-top:2px solid var(--line);font-weight:700;">
+                <td style="padding:9px 8px;">Total</td>
+                <td style="padding:9px 8px;" id="benchmarkTotalRsM2"></td>
+                <td style="padding:9px 8px;" id="benchmarkTotalEstimado"></td>
+                <td style="padding:9px 8px;" colspan="2"></td>
+              </tr>
+            </tfoot>
           </table>
         </div>
       </div>
@@ -839,12 +855,18 @@
 
         <canvas id="chartFasesRealizadoOrcado" style="max-height:280px;margin-bottom:18px;"></canvas>
 
+        <div id="fasesObraOrcamentoAviso" style="display:none;font-size:11.5px;color:#3E7A4F;background:#F0F5EF;border:1px solid #C9DBC6;border-radius:8px;padding:8px 12px;margin-bottom:12px;">
+          ✅ Essa obra tem orçamento inicial cadastrado — as colunas "Orçado" e "Desvio" comparam o que foi
+          planejado no início da obra com o que ela mesma já gastou até agora.
+        </div>
         <div style="overflow-x:auto;">
           <table style="width:100%;border-collapse:collapse;font-size:12.5px;">
             <thead>
               <tr style="text-align:left;border-bottom:2px solid var(--line);">
                 <th style="padding:9px 8px;">Fase</th>
                 <th style="padding:9px 8px;">Investido</th>
+                <th style="padding:9px 8px;" id="fasesColOrcado">Orçado (início da obra)</th>
+                <th style="padding:9px 8px;" id="fasesColDesvio">Desvio</th>
                 <th style="padding:9px 8px;">% do total</th>
                 <th style="padding:9px 8px;">R$/m²</th>
                 <th style="padding:9px 8px;"></th>
@@ -1777,6 +1799,11 @@ const BENCHMARK_MERCADO_POR_FASE = {"Empreiteiro":{"rsPorM2":769.77,"totalRealiz
 // DIRECIONAL de erro do orçamento prévio, não como comparação exata de preço.
 const COMPARACAO_ORCADO_PREVIO_VS_REALIZADO = {"Empreiteiro":{"orcadoRsM2":1152.58,"mercadoRsM2":769.77,"desvioPct":-33.2,"numObrasOrcamento":16,"numObrasMercado":34},"Esquadrias e Vidros":{"orcadoRsM2":470.31,"mercadoRsM2":116.4,"desvioPct":-75.3,"numObrasOrcamento":16,"numObrasMercado":4},"Fundação e Contrapiso":{"orcadoRsM2":414.37,"mercadoRsM2":119.63,"desvioPct":-71.1,"numObrasOrcamento":16,"numObrasMercado":34},"Pisos e Revestimentos":{"orcadoRsM2":409.17,"mercadoRsM2":232.77,"desvioPct":-43.1,"numObrasOrcamento":16,"numObrasMercado":21},"Complementos":{"orcadoRsM2":392.74,"mercadoRsM2":65.56,"desvioPct":-83.3,"numObrasOrcamento":16,"numObrasMercado":36},"Pilares e Vigas":{"orcadoRsM2":306.2,"mercadoRsM2":99.97,"desvioPct":-67.4,"numObrasOrcamento":16,"numObrasMercado":33},"Laje":{"orcadoRsM2":265.04,"mercadoRsM2":41.21,"desvioPct":-84.5,"numObrasOrcamento":16,"numObrasMercado":28},"Paredes e Muros":{"orcadoRsM2":207.3,"mercadoRsM2":132.77,"desvioPct":-36.0,"numObrasOrcamento":16,"numObrasMercado":34},"Marmoraria":{"orcadoRsM2":201.2,"mercadoRsM2":38.06,"desvioPct":-81.1,"numObrasOrcamento":16,"numObrasMercado":10},"Muro de Arrimo":{"orcadoRsM2":161.6,"mercadoRsM2":62.63,"desvioPct":-61.2,"numObrasOrcamento":16,"numObrasMercado":29},"Hidrossanitário e Pluvial":{"orcadoRsM2":141.22,"mercadoRsM2":94.35,"desvioPct":-33.2,"numObrasOrcamento":16,"numObrasMercado":34},"Elétrica":{"orcadoRsM2":135.68,"mercadoRsM2":90.11,"desvioPct":-33.6,"numObrasOrcamento":16,"numObrasMercado":36},"Equip Piscina":{"orcadoRsM2":124.54,"mercadoRsM2":29.96,"desvioPct":-75.9,"numObrasOrcamento":16,"numObrasMercado":9},"Locação de Equip.":{"orcadoRsM2":121.51,"mercadoRsM2":37.94,"desvioPct":-68.8,"numObrasOrcamento":16,"numObrasMercado":34},"Pintura":{"orcadoRsM2":116.69,"mercadoRsM2":49.05,"desvioPct":-58.0,"numObrasOrcamento":16,"numObrasMercado":27},"Pintor":{"orcadoRsM2":110.8,"mercadoRsM2":101.38,"desvioPct":-8.5,"numObrasOrcamento":16,"numObrasMercado":11},"Portas de Madeira":{"orcadoRsM2":90.0,"mercadoRsM2":82.7,"desvioPct":-8.1,"numObrasOrcamento":16,"numObrasMercado":5},"Reboco Externo":{"orcadoRsM2":77.71,"mercadoRsM2":36.74,"desvioPct":-52.7,"numObrasOrcamento":16,"numObrasMercado":26},"Reboco Interno":{"orcadoRsM2":75.78,"mercadoRsM2":31.69,"desvioPct":-58.2,"numObrasOrcamento":16,"numObrasMercado":25},"Eletricista":{"orcadoRsM2":74.09,"mercadoRsM2":26.95,"desvioPct":-63.6,"numObrasOrcamento":16,"numObrasMercado":33},"Cobertura":{"orcadoRsM2":69.11,"mercadoRsM2":71.58,"desvioPct":3.6,"numObrasOrcamento":16,"numObrasMercado":18},"Louças e Metais":{"orcadoRsM2":62.03,"mercadoRsM2":34.96,"desvioPct":-43.6,"numObrasOrcamento":16,"numObrasMercado":11},"Calhas":{"orcadoRsM2":53.36,"mercadoRsM2":1.16,"desvioPct":-97.8,"numObrasOrcamento":16,"numObrasMercado":1},"Iluminação":{"orcadoRsM2":46.33,"mercadoRsM2":36.53,"desvioPct":-21.2,"numObrasOrcamento":16,"numObrasMercado":9},"Muro de Divisa":{"orcadoRsM2":11.78,"mercadoRsM2":7.93,"desvioPct":-32.7,"numObrasOrcamento":16,"numObrasMercado":3}};
 
+// Orçamento PRÉVIO por OBRA individual (não agregado) — cada obra tem seu próprio orçamento por
+// fase, extraído do PDF de orçamento inicial dela. Usado para comparar cada obra com ELA MESMA
+// (orçamento dela vs. o que ela mesma já gastou), em vez de uma média entre obras diferentes.
+const ORCAMENTO_PREVIO_POR_OBRA = {"W15":{"area":308.71,"fases":{"Muro de Arrimo":64115.92,"Fundação e Contrapiso":117743.17,"Hidrossanitário e Pluvial":41484.45,"Pilares e Vigas":144673.9,"Paredes e Muros":38208.2,"Laje":70073.94,"Cobertura":4403.25,"Reboco Externo":21433.7,"Reboco Interno":16788.52,"Calhas":12608.93,"Gesso":65205.92,"Pisos e Revestimentos":221746.34,"Marmoraria":79992.09,"Portas de Madeira":20252.26,"Esquadrias e Vidros":159248.07,"Pintura":40758.55,"Pintor":37272.3,"Elétrica":40415.36,"Eletricista":20976.85,"Iluminação":15840.73,"Louças e Metais":15381.13,"Equip Piscina":50224.46,"Muro de Divisa":0.0,"Complementos":84330.45,"Locação de Equip.":31072.15,"Empreiteiro":401323.0}},"J5":{"area":343.85,"fases":{"Muro de Arrimo":67620.4,"Fundação e Contrapiso":133156.91,"Hidrossanitário e Pluvial":46207.91,"Pilares e Vigas":96800.27,"Paredes e Muros":65418.55,"Laje":86119.33,"Cobertura":18618.9,"Reboco Externo":28128.62,"Reboco Interno":21039.53,"Calhas":14258.55,"Gesso":56873.6,"Pisos e Revestimentos":107285.78,"Marmoraria":90405.5,"Portas de Madeira":38040.34,"Esquadrias e Vidros":260389.92,"Pintura":46090.95,"Pintor":34393.74,"Elétrica":45702.86,"Eletricista":23721.23,"Iluminação":13733.96,"Louças e Metais":18817.73,"Equip Piscina":58960.37,"Muro de Divisa":9116.99,"Complementos":85195.76,"Locação de Equip.":32928.89,"Empreiteiro":412632.0}},"A20":{"area":207.3,"fases":{"Muro de Arrimo":37661.41,"Fundação e Contrapiso":89690.36,"Hidrossanitário e Pluvial":26676.34,"Pilares e Vigas":96019.24,"Paredes e Muros":36001.3,"Laje":51992.42,"Cobertura":11587.82,"Reboco Externo":13545.5,"Reboco Interno":10291.38,"Calhas":12500.0,"Gesso":22372.25,"Pisos e Revestimentos":97747.8,"Marmoraria":45257.63,"Portas de Madeira":16710.05,"Esquadrias e Vidros":119045.0,"Pintura":28735.0,"Pintor":21551.25,"Elétrica":28735.0,"Eletricista":14367.5,"Iluminação":11288.75,"Louças e Metais":12816.94,"Equip Piscina":42664.0,"Muro de Divisa":0.0,"Complementos":41102.51,"Locação de Equip.":23603.75,"Empreiteiro":220225.0}},"J1":{"area":210.83,"fases":{"Muro de Arrimo":0.0,"Fundação e Contrapiso":103039.09,"Hidrossanitário e Pluvial":26775.54,"Pilares e Vigas":87503.47,"Paredes e Muros":45710.4,"Laje":51298.86,"Cobertura":27789.47,"Reboco Externo":16250.92,"Reboco Interno":9459.44,"Calhas":13892.04,"Gesso":14193.17,"Pisos e Revestimentos":67448.41,"Marmoraria":39030.71,"Portas de Madeira":21963.91,"Esquadrias e Vidros":76548.78,"Pintura":24304.64,"Pintor":22263.79,"Elétrica":28398.25,"Eletricista":16073.73,"Iluminação":11131.89,"Louças e Metais":15650.54,"Equip Piscina":48938.15,"Muro de Divisa":0.0,"Complementos":89158.34,"Locação de Equip.":28172.48,"Empreiteiro":215413.0}},"A6":{"area":231.24,"fases":{"Muro de Arrimo":22692.55,"Fundação e Contrapiso":91971.45,"Hidrossanitário e Pluvial":31074.03,"Pilares e Vigas":79486.86,"Paredes e Muros":44280.7,"Laje":63960.2,"Cobertura":18026.88,"Reboco Externo":17345.75,"Reboco Interno":20762.33,"Calhas":9443.84,"Gesso":21414.54,"Pisos e Revestimentos":94397.32,"Marmoraria":81378.0,"Portas de Madeira":22639.41,"Esquadrias e Vidros":216224.91,"Pintura":30527.33,"Pintor":27916.2,"Elétrica":30270.29,"Eletricista":15711.24,"Iluminação":11864.39,"Louças e Metais":11520.16,"Equip Piscina":28627.96,"Muro de Divisa":10363.81,"Complementos":67897.69,"Locação de Equip.":27509.63,"Empreiteiro":277488.0}},"F23":{"area":180.0,"fases":{"Muro de Arrimo":15803.42,"Fundação e Contrapiso":83250.91,"Hidrossanitário e Pluvial":21943.57,"Pilares e Vigas":46685.72,"Paredes e Muros":26994.65,"Laje":47276.19,"Cobertura":13426.0,"Reboco Externo":9494.43,"Reboco Interno":9183.3,"Calhas":14729.0,"Gesso":16995.0,"Pisos e Revestimentos":54661.25,"Marmoraria":40615.09,"Portas de Madeira":25967.52,"Esquadrias e Vidros":82435.52,"Pintura":21660.2,"Pintor":22916.28,"Elétrica":20704.09,"Eletricista":14270.25,"Iluminação":7931.0,"Louças e Metais":9375.65,"Equip Piscina":0.0,"Muro de Divisa":2987.61,"Complementos":47984.02,"Locação de Equip.":29242.73,"Empreiteiro":179930.0}},"C9":{"area":257.35,"fases":{"Muro de Arrimo":51286.89,"Fundação e Contrapiso":100900.99,"Hidrossanitário e Pluvial":33447.78,"Pilares e Vigas":64676.9,"Paredes e Muros":28237.7,"Laje":63787.13,"Cobertura":20128.5,"Reboco Externo":11025.1,"Reboco Interno":14672.6,"Calhas":13500.0,"Gesso":14400.0,"Pisos e Revestimentos":96244.42,"Marmoraria":34297.49,"Portas de Madeira":11935.75,"Esquadrias e Vidros":170418.74,"Pintura":35411.36,"Pintor":34812.0,"Elétrica":36373.85,"Eletricista":20588.0,"Iluminação":12784.5,"Louças e Metais":30127.87,"Equip Piscina":13086.0,"Muro de Divisa":0.0,"Complementos":429403.22,"Locação de Equip.":43300.0,"Empreiteiro":255288.0}},"Q4L8":{"area":190.0,"fases":{"Muro de Arrimo":26975.24,"Fundação e Contrapiso":78593.59,"Hidrossanitário e Pluvial":33331.54,"Pilares e Vigas":48617.9,"Paredes e Muros":50364.22,"Laje":60890.5,"Cobertura":24283.97,"Reboco Externo":19965.5,"Reboco Interno":21265.5,"Calhas":13380.89,"Gesso":19774.0,"Pisos e Revestimentos":81839.95,"Marmoraria":35263.0,"Portas de Madeira":22639.41,"Esquadrias e Vidros":62413.0,"Pintura":21619.18,"Pintor":24135.8,"Elétrica":30494.93,"Eletricista":17931.61,"Iluminação":9589.15,"Louças e Metais":15798.92,"Equip Piscina":43771.24,"Muro de Divisa":0.0,"Complementos":55622.4,"Locação de Equip.":26070.17,"Empreiteiro":217591.0}},"J39":{"area":149.29,"fases":{"Muro de Arrimo":4698.66,"Fundação e Contrapiso":57359.64,"Hidrossanitário e Pluvial":26791.26,"Pilares e Vigas":11880.44,"Paredes e Muros":56506.0,"Laje":52009.65,"Cobertura":17117.05,"Reboco Externo":19711.5,"Reboco Interno":13101.5,"Calhas":10755.3,"Gesso":13859.65,"Pisos e Revestimentos":75311.45,"Marmoraria":32567.96,"Portas de Madeira":19097.2,"Esquadrias e Vidros":78972.52,"Pintura":17377.09,"Pintor":19399.9,"Elétrica":24511.25,"Eletricista":14413.09,"Iluminação":9249.1,"Louças e Metais":12698.88,"Equip Piscina":0.0,"Muro de Divisa":6926.11,"Complementos":59720.5,"Locação de Equip.":24266.89,"Empreiteiro":167137.6}},"D10":{"area":181.11,"fases":{"Muro de Arrimo":22757.37,"Fundação e Contrapiso":106651.62,"Hidrossanitário e Pluvial":26336.89,"Pilares e Vigas":43883.24,"Paredes e Muros":45666.1,"Laje":49854.16,"Cobertura":19684.06,"Reboco Externo":24051.35,"Reboco Interno":17755.55,"Calhas":13052.96,"Gesso":26236.35,"Pisos e Revestimentos":91915.27,"Marmoraria":35932.22,"Portas de Madeira":21407.32,"Esquadrias e Vidros":78728.52,"Pintura":21089.35,"Pintor":16481.01,"Elétrica":26772.83,"Eletricista":15742.94,"Iluminação":9354.15,"Louças e Metais":16952.91,"Equip Piscina":0.0,"Muro de Divisa":0.0,"Complementos":54880.74,"Locação de Equip.":25844.95,"Empreiteiro":199221.0}},"E1":{"area":560.29,"fases":{"Muro de Arrimo":91263.98,"Fundação e Contrapiso":200270.47,"Hidrossanitário e Pluvial":75268.93,"Pilares e Vigas":125558.6,"Paredes e Muros":120601.75,"Laje":143875.1,"Cobertura":27872.77,"Reboco Externo":40542.5,"Reboco Interno":50333.5,"Calhas":23584.08,"Gesso":59811.95,"Pisos e Revestimentos":306887.03,"Marmoraria":119695.46,"Portas de Madeira":42814.64,"Esquadrias e Vidros":125146.59,"Pintura":76235.88,"Pintor":69715.1,"Elétrica":75593.96,"Eletricista":39235.66,"Iluminação":29628.92,"Louças e Metais":25892.35,"Equip Piscina":75913.38,"Muro de Divisa":18668.48,"Complementos":91302.99,"Locação de Equip.":43425.37,"Empreiteiro":728156.0}},"I1":{"area":200.0,"fases":{"Muro de Arrimo":17939.35,"Fundação e Contrapiso":110264.95,"Hidrossanitário e Pluvial":37670.78,"Pilares e Vigas":83127.79,"Paredes e Muros":65594.45,"Laje":46835.4,"Cobertura":25141.28,"Reboco Externo":26331.5,"Reboco Interno":21480.87,"Calhas":13350.0,"Gesso":20745.89,"Pisos e Revestimentos":75059.21,"Marmoraria":55000.0,"Portas de Madeira":28568.77,"Esquadrias e Vidros":120000.0,"Pintura":24433.65,"Pintor":34097.38,"Elétrica":34464.89,"Eletricista":17835.55,"Iluminação":10837.51,"Louças e Metais":15322.0,"Equip Piscina":0.0,"Muro de Divisa":0.0,"Complementos":162768.66,"Locação de Equip.":34083.23,"Empreiteiro":268881.5}},"P7":{"area":381.15,"fases":{"Muro de Arrimo":136895.3,"Fundação e Contrapiso":164284.2,"Hidrossanitário e Pluvial":50208.17,"Pilares e Vigas":136974.6,"Paredes e Muros":71860.74,"Laje":104361.44,"Cobertura":5061.84,"Reboco Externo":17285.0,"Reboco Interno":25637.9,"Calhas":15250.0,"Gesso":35090.0,"Pisos e Revestimentos":178270.23,"Marmoraria":60694.94,"Portas de Madeira":42891.67,"Esquadrias e Vidros":234516.99,"Pintura":46626.38,"Pintor":44135.0,"Elétrica":52461.17,"Eletricista":33405.3,"Iluminação":18558.5,"Louças e Metais":30099.2,"Equip Piscina":104471.96,"Muro de Divisa":0.0,"Complementos":145303.3,"Locação de Equip.":42684.55,"Empreiteiro":468510.0}},"L17":{"area":172.3,"fases":{"Muro de Arrimo":42566.39,"Fundação e Contrapiso":75295.94,"Hidrossanitário e Pluvial":24746.42,"Pilares e Vigas":47677.0,"Paredes e Muros":37589.65,"Laje":48100.66,"Cobertura":17689.57,"Reboco Externo":13603.32,"Reboco Interno":17684.44,"Calhas":11500.0,"Gesso":18801.12,"Pisos e Revestimentos":46614.4,"Marmoraria":34184.32,"Portas de Madeira":21407.32,"Esquadrias e Vidros":41759.88,"Pintura":20063.47,"Pintor":22399.0,"Elétrica":28300.53,"Eletricista":15500.0,"Iluminação":7500.0,"Louças e Metais":8600.0,"Equip Piscina":0.0,"Muro de Divisa":0.0,"Complementos":62566.22,"Locação de Equip.":25408.85,"Empreiteiro":180915.0}},"W35":{"area":313.68,"fases":{"Muro de Arrimo":45512.71,"Fundação e Contrapiso":101391.02,"Hidrossanitário e Pluvial":41647.05,"Pilares e Vigas":117073.02,"Paredes e Muros":54845.0,"Laje":84043.1,"Cobertura":17096.15,"Reboco Externo":18861.81,"Reboco Interno":22738.21,"Calhas":12838.06,"Gesso":0.0,"Pisos e Revestimentos":0.0,"Marmoraria":0.0,"Portas de Madeira":0.0,"Esquadrias e Vidros":8000.0,"Pintura":0.0,"Pintor":0.0,"Elétrica":20574.89,"Eletricista":5000.0,"Iluminação":0.0,"Louças e Metais":0.0,"Equip Piscina":0.0,"Muro de Divisa":0.0,"Complementos":58778.9,"Locação de Equip.":31330.04,"Empreiteiro":309920.0}},"P5":{"area":191.25,"fases":{"Muro de Arrimo":11279.51,"Fundação e Contrapiso":76095.82,"Hidrossanitário e Pluvial":32315.4,"Pilares e Vigas":18169.34,"Paredes e Muros":57578.03,"Laje":56436.56,"Cobertura":13936.34,"Reboco Externo":19342.03,"Reboco Interno":16880.6,"Calhas":12972.96,"Gesso":17796.6,"Pisos e Revestimentos":73327.07,"Marmoraria":36262.08,"Portas de Madeira":10703.66,"Esquadrias e Vidros":84240.0,"Pintura":20960.1,"Pintor":20412.0,"Elétrica":29565.27,"Eletricista":17384.95,"Iluminação":9654.39,"Louças e Metais":13924.8,"Equip Piscina":41265.42,"Muro de Divisa":0.0,"Complementos":65709.82,"Locação de Equip.":26600.0,"Empreiteiro":198000.0}}};
+
 obras_central.forEach(o => {
   if (!o.sheet_id) return;
   const base = `https://docs.google.com/spreadsheets/d/${o.sheet_id}/gviz/tq?tqx=out:csv&sheet=`;
@@ -2067,24 +2094,36 @@ function renderFasesDetalhe(obraCode){
     boxProj.style.display = 'none';
   }
 
-  // Gráfico de barras: investimento realizado por fase
+  // Orçamento prévio DESSA OBRA especificamente (não a média entre obras) — usado pra comparar
+  // cada fase com o que foi planejado no início dessa mesma obra.
+  const orcamentoPrevioObra = ORCAMENTO_PREVIO_POR_OBRA[obraCode];
+
+  // Gráfico de barras: investimento realizado por fase (+ orçado da própria obra, se disponível)
   const maxVal = entradas.length ? entradas[0][1] : 1;
   const ctxFases = document.getElementById('chartFasesRealizadoOrcado');
   if (window._chartFases) window._chartFases.destroy();
   if (ctxFases){
+    const datasets = [{
+      label: 'Realizado (R$)',
+      data: entradas.map(([,v]) => v),
+      backgroundColor: '#8AA6C2'
+    }];
+    if (orcamentoPrevioObra){
+      datasets.push({
+        label: 'Orçado no início da obra (R$)',
+        data: entradas.map(([fase]) => orcamentoPrevioObra.fases[fase] || 0),
+        backgroundColor: '#E8A33D'
+      });
+    }
     window._chartFases = new Chart(ctxFases, {
       type: 'bar',
       data: {
         labels: entradas.map(([f]) => f),
-        datasets: [{
-          label: 'Realizado (R$)',
-          data: entradas.map(([,v]) => v),
-          backgroundColor: '#8AA6C2'
-        }]
+        datasets: datasets
       },
       options: {
         indexAxis: 'y',
-        plugins: { legend: { display: false } },
+        plugins: { legend: { display: orcamentoPrevioObra ? true : false } },
         scales: {
           x: { ticks: { callback: v => 'R$ ' + (v/1000).toFixed(0) + 'k' } }
         }
@@ -2092,13 +2131,41 @@ function renderFasesDetalhe(obraCode){
     });
   }
 
+  // Orçamento prévio DESSA OBRA especificamente (não a média entre obras) — usado pra comparar
+  // cada fase com o que foi planejado no início dessa mesma obra.
+  const avisoOrcamento = document.getElementById('fasesObraOrcamentoAviso');
+  const colOrcado = document.getElementById('fasesColOrcado');
+  const colDesvio = document.getElementById('fasesColDesvio');
+  const temOrcamentoPorFase = !!orcamentoPrevioObra;
+  avisoOrcamento.style.display = temOrcamentoPorFase ? '' : 'none';
+  colOrcado.style.display = temOrcamentoPorFase ? '' : 'none';
+  colDesvio.style.display = temOrcamentoPorFase ? '' : 'none';
+
   tbody.innerHTML = entradas.map(([fase, valor]) => {
     const pct = total > 0 ? (valor/total*100) : 0;
     const rsPorM2 = areaM2 ? valor/areaM2 : null;
     const barWidth = (valor/maxVal*100).toFixed(1);
+
+    let celulasOrcamento = '';
+    if (temOrcamentoPorFase){
+      const orcadoFase = orcamentoPrevioObra.fases[fase];
+      if (orcadoFase !== undefined && orcadoFase > 0){
+        const desvioPct = ((valor - orcadoFase) / orcadoFase) * 100;
+        const cor = desvioPct > 20 ? '#B54A2E' : (desvioPct > 0 ? '#C08A2E' : '#3E7A4F');
+        const seta = desvioPct >= 0 ? '▲' : '▼';
+        celulasOrcamento = `
+      <td style="padding:8px;font-family:'IBM Plex Mono';">${fmtBRL(orcadoFase)}</td>
+      <td style="padding:8px;font-weight:700;color:${cor};">${seta} ${Math.abs(desvioPct).toFixed(0)}%</td>`;
+      } else {
+        celulasOrcamento = `
+      <td style="padding:8px;color:var(--muted-2);">—</td>
+      <td style="padding:8px;color:var(--muted-2);">—</td>`;
+      }
+    }
+
     return `<tr style="border-bottom:1px solid var(--line);">
       <td style="padding:8px;">${fase}</td>
-      <td style="padding:8px;font-family:'IBM Plex Mono';">${fmtBRL(valor)}</td>
+      <td style="padding:8px;font-family:'IBM Plex Mono';">${fmtBRL(valor)}</td>${celulasOrcamento}
       <td style="padding:8px;color:var(--muted);">${pct.toFixed(1)}%</td>
       <td style="padding:8px;font-family:'IBM Plex Mono';">${rsPorM2!==null ? 'R$ '+rsPorM2.toLocaleString('pt-BR',{maximumFractionDigits:0}) : '—'}</td>
       <td style="padding:8px;width:120px;"><div style="background:var(--line);border-radius:3px;height:6px;overflow:hidden;"><div style="background:#8AA6C2;height:100%;width:${barWidth}%;"></div></div></td>
@@ -2151,19 +2218,38 @@ function renderBenchmarkMercado(){
   const tbody = document.getElementById('benchmarkTableBody');
   if (!tbody) return;
 
+  const inputArea = document.getElementById('benchmarkAreaInput');
+  const area = Math.max(1, parseFloat(inputArea.value) || 200);
+  document.getElementById('benchmarkAreaLabel').textContent = `(${area.toLocaleString('pt-BR')} m²)`;
+
   const entradas = Object.entries(BENCHMARK_MERCADO_POR_FASE);
   const maxVal = entradas.length ? entradas[0][1].rsPorM2 : 1;
+
+  let somaRsM2 = 0, somaEstimado = 0;
 
   tbody.innerHTML = entradas.map(([fase, d]) => {
     const barWidth = (d.rsPorM2 / maxVal * 100).toFixed(1);
     const confiabilidade = d.numObras >= 15 ? '#3E7A4F' : (d.numObras >= 5 ? '#C08A2E' : '#B54A2E');
+    const estimado = d.rsPorM2 * area;
+    somaRsM2 += d.rsPorM2;
+    somaEstimado += estimado;
     return `<tr style="border-bottom:1px solid var(--line);">
       <td style="padding:8px;">${fase}</td>
       <td style="padding:8px;font-family:'IBM Plex Mono';font-weight:700;">R$ ${d.rsPorM2.toLocaleString('pt-BR',{minimumFractionDigits:2})}</td>
+      <td style="padding:8px;font-family:'IBM Plex Mono';color:#35577A;font-weight:600;">${fmtBRL(estimado)}</td>
       <td style="padding:8px;color:${confiabilidade};">${d.numObras} obra${d.numObras!==1?'s':''}</td>
       <td style="padding:8px;width:140px;"><div style="background:var(--line);border-radius:3px;height:6px;overflow:hidden;"><div style="background:#8AA6C2;height:100%;width:${barWidth}%;"></div></div></td>
     </tr>`;
   }).join('');
+
+  document.getElementById('benchmarkTotalRsM2').textContent = 'R$ ' + somaRsM2.toLocaleString('pt-BR',{minimumFractionDigits:2});
+  document.getElementById('benchmarkTotalEstimado').textContent = fmtBRL(somaEstimado);
+
+  // Só registra o listener uma vez (evita empilhar múltiplos listeners a cada render)
+  if (!inputArea.dataset.listenerAdded){
+    inputArea.addEventListener('input', renderBenchmarkMercado);
+    inputArea.dataset.listenerAdded = '1';
+  }
 }
 
 function renderAlertasEstouro(){
