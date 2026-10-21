@@ -125,6 +125,122 @@
     .kpi{border-right:none;border-bottom:1px dashed #414753;padding-bottom:14px;margin-bottom:6px;}
     .grid-2{grid-template-columns:1fr;}
   }
+
+  /* ===================== CONTRATOS (aba nova) ===================== */
+  .ct-banner{border-radius:10px;padding:10px 14px;font-size:12.5px;margin-bottom:14px;line-height:1.5;}
+  .ct-banner.demo{background:var(--amber-light);border:1px solid #EBC98A;color:#7A5410;display:flex;gap:6px 14px;flex-wrap:wrap;align-items:center;}
+  .ct-banner.erro{background:#FCE8E4;border:1px solid #E8907D;color:#8A3B26;}
+  .ct-banner.info{background:var(--steel-light);border:1px solid #C9D6E3;color:var(--steel);}
+  .ct-demo-links{margin-left:auto;}
+  .ct-demo-links a{color:#7A5410;font-weight:600;}
+  .ct-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;}
+  .ct-head h3{font-family:'Space Grotesk';font-size:15px;margin:0;display:flex;align-items:center;gap:8px;}
+  .ct-tabs{display:flex;gap:4px;background:var(--paper);border-radius:9px;padding:3px;}
+  .ct-tab{font-family:'Space Grotesk';font-size:14px;font-weight:600;border:none;background:none;color:var(--muted);padding:7px 14px;border-radius:7px;cursor:pointer;display:flex;align-items:center;gap:7px;white-space:nowrap;}
+  .ct-tab:hover{color:var(--ink);}
+  .ct-tab.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.08);}
+  .ct-tab:focus-visible{outline:2px solid var(--steel);outline-offset:1px;}
+  .ct-tab.on .ct-count{background:var(--steel-light);color:var(--steel);}
+  .ct-label-row{display:flex;justify-content:space-between;align-items:baseline;gap:8px;}
+  .ct-link-btn{border:none;background:none;padding:0;font-family:'Inter';font-size:11.5px;font-weight:600;color:var(--steel);cursor:pointer;}
+  .ct-link-btn:hover{text-decoration:underline;}
+  .ct-novo-forn{grid-column:1 / -1;background:var(--steel-light);border-radius:10px;padding:12px 14px;display:grid;grid-template-columns:1fr 1fr;gap:10px 12px;}
+  .ct-novo-forn .full{grid-column:1 / -1;}
+  .ct-novo-forn .acoes{grid-column:1 / -1;display:flex;gap:8px;justify-content:flex-end;align-items:center;}
+  .ct-novo-forn .ct-err{margin:0;margin-right:auto;}
+  .ct-count{font-family:'IBM Plex Mono';font-size:11.5px;color:var(--muted);background:var(--paper);border-radius:10px;padding:1px 8px;font-weight:600;}
+  .ct-count:empty{display:none;}
+  .ct-input,.ct-select,.ct-textarea{font-family:'Inter';font-size:13px;padding:8px 11px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--ink);width:100%;}
+  .ct-textarea{resize:vertical;}
+  .ct-input:focus-visible,.ct-select:focus-visible,.ct-textarea:focus-visible,.ct-btn:focus-visible,.ct-row:focus-visible{outline:2px solid var(--steel);outline-offset:1px;}
+  .ct-btn{font-family:'Inter';font-size:12.5px;padding:8px 14px;border-radius:7px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-weight:600;cursor:pointer;white-space:nowrap;}
+  .ct-btn:hover{background:var(--paper);}
+  .ct-btn.primary{background:var(--graphite);border-color:var(--graphite);color:#fff;}
+  .ct-btn.primary:hover{background:var(--graphite-2);}
+  .ct-btn.danger{color:var(--rust);border-color:#E8C1B6;}
+  .ct-btn[disabled]{opacity:.5;cursor:not-allowed;}
+  .ct-table-wrap{overflow-x:auto;width:0;min-width:100%;} /* a tabela rola dentro do card sem alargar a página */
+  .ct-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .ct-table th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;padding:8px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  .ct-table td{padding:12px 10px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap;}
+  .ct-table tr:last-child td{border-bottom:none;}
+  .ct-table tr.ct-row{cursor:pointer;}
+  .ct-table tr.ct-row:hover td{background:var(--steel-light);}
+  .ct-table .mono{font-family:'IBM Plex Mono';font-size:12px;}
+  .ct-table .forn{font-weight:600;max-width:220px;overflow:hidden;text-overflow:ellipsis;}
+  .ct-table .eng{max-width:170px;overflow:hidden;text-overflow:ellipsis;font-size:12.5px;}
+  .ct-table .obra{max-width:240px;overflow:hidden;text-overflow:ellipsis;}
+  .ct-badge{display:inline-block;font-size:11px;font-weight:600;padding:3px 10px;border-radius:20px;white-space:nowrap;}
+  .ct-badge.e1,.ct-badge.e2,.ct-badge.e3{background:var(--steel-light);color:var(--steel);}
+  .ct-badge.e4{background:var(--amber-light);color:#7A5410;}
+  .ct-badge.e5{background:#E3F1E6;color:#2F6B3E;}
+  .ct-badge.e6{background:#2F6B3E;color:#fff;}
+  .ct-badge.e9{background:#F6E1DB;color:var(--rust);}
+  .ct-badge.parada{background:#F6E1DB;color:var(--rust);}
+  .ct-badge.parada::before{content:"● ";font-size:9px;}
+  .ct-adef{color:var(--muted-2);font-weight:500;font-style:italic;}
+  .ct-aviso{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;background:var(--amber);color:#3A2A06;font-size:11px;font-weight:700;vertical-align:middle;cursor:help;}
+  .ct-err{color:var(--rust);font-size:12px;margin-top:8px;min-height:16px;}
+  .ct-hint{font-size:11.5px;color:var(--muted-2);margin-top:12px;}
+  .ct-sec-title{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:4px 0 10px;}
+  .ct-login{text-align:center;padding:38px 20px;}
+  .ct-login p{font-size:13px;color:var(--muted);margin:0 0 16px;}
+  .ct-login-row{display:flex;gap:8px;justify-content:center;max-width:420px;margin:0 auto;}
+  .ct-login-row .ct-input{font-family:'IBM Plex Mono';letter-spacing:.06em;text-align:center;}
+  #page-contratos a,.ct-modal a{color:var(--steel);font-weight:600;text-decoration:none;}
+  #page-contratos a:hover,.ct-modal a:hover{text-decoration:underline;}
+  /* janela */
+  .ct-modal-bg{position:fixed;inset:0;background:rgba(18,20,28,.45);z-index:9000;display:flex;align-items:flex-start;justify-content:center;padding:40px 16px;overflow-y:auto;}
+  .ct-modal{background:var(--card);border-radius:14px;width:100%;max-width:580px;padding:22px 24px;box-shadow:0 14px 50px rgba(0,0,0,.25);}
+  .ct-modal-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;margin-bottom:16px;}
+  .ct-modal h3{font-family:'Space Grotesk';font-size:18px;margin:0 0 3px;}
+  .ct-modal-sub{font-size:12.5px;color:var(--muted);}
+  .ct-x{border:none;background:none;font-size:24px;line-height:1;color:var(--muted);cursor:pointer;padding:0 4px;}
+  .ct-x:hover{color:var(--ink);}
+  .ct-info{display:grid;grid-template-columns:1fr 1fr;gap:12px 18px;margin:0 0 18px;padding:14px 16px;background:var(--paper);border-radius:10px;}
+  .ct-info .full{grid-column:1 / -1;}
+  .ct-info dt{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:2px;}
+  .ct-info dd{margin:0;font-size:13px;word-break:break-word;}
+  /* linha do tempo */
+  .ct-tl{list-style:none;margin:0 0 6px;padding:0;}
+  .ct-tl li{position:relative;padding:0 0 14px 26px;}
+  .ct-tl li::before{content:"";position:absolute;left:6px;top:14px;bottom:-2px;width:2px;background:var(--line);}
+  .ct-tl li:last-child::before{display:none;}
+  .ct-tl li.done::before{background:var(--steel);}
+  .ct-tl-dot{position:absolute;left:0;top:3px;width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--card);box-sizing:border-box;}
+  .ct-tl li.done .ct-tl-dot{background:var(--steel);border-color:var(--steel);}
+  .ct-tl li.cur .ct-tl-dot{background:var(--amber);border-color:var(--amber);box-shadow:0 0 0 4px var(--amber-light);}
+  .ct-tl li.canc .ct-tl-dot{background:var(--rust);border-color:var(--rust);}
+  .ct-tl-row{display:flex;justify-content:space-between;gap:12px;align-items:baseline;}
+  .ct-tl-name{font-size:13px;color:var(--muted-2);}
+  .ct-tl li.done .ct-tl-name{color:var(--ink);}
+  .ct-tl li.cur .ct-tl-name{color:var(--ink);font-weight:700;}
+  .ct-tl li.canc .ct-tl-name{color:var(--rust);font-weight:700;}
+  .ct-tl-date{font-family:'IBM Plex Mono';font-size:12px;color:var(--muted);white-space:nowrap;}
+  .ct-tl-sub{font-size:11.5px;color:var(--muted);margin-top:2px;}
+  .ct-tl-alert{font-size:12px;color:var(--rust);font-weight:600;margin-top:3px;}
+  .ct-avanco{background:var(--steel-light);border-radius:10px;padding:12px 14px;margin:6px 0 4px;}
+  .ct-avanco label{display:block;font-size:12.5px;margin-bottom:8px;}
+  .ct-avanco-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+  .ct-avanco-row .ct-input{width:auto;flex:1;min-width:150px;}
+  .ct-hist-wrap{margin-top:10px;font-size:12px;}
+  .ct-hist-wrap summary{cursor:pointer;color:var(--muted);font-weight:600;font-size:11.5px;}
+  .ct-hist{max-height:180px;overflow-y:auto;margin-top:8px;font-size:11.5px;}
+  .ct-hist div{padding:5px 0;border-bottom:1px dashed var(--line);}
+  .ct-hist .mono{font-family:'IBM Plex Mono';color:var(--muted);font-size:10.5px;}
+  .ct-modal-foot{display:flex;justify-content:space-between;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--line);flex-wrap:wrap;}
+  .ct-modal-foot .left,.ct-modal-foot .right{display:flex;gap:8px;flex-wrap:wrap;}
+  .ct-modal-foot .right{margin-left:auto;}
+  .ct-form{display:grid;grid-template-columns:1fr 1fr;gap:12px 14px;}
+  .ct-form .full{grid-column:1 / -1;}
+  .ct-form label{display:block;font-size:11px;font-weight:600;color:var(--muted);margin-bottom:4px;letter-spacing:.03em;}
+  .ct-toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--graphite);color:#fff;padding:10px 18px;border-radius:9px;font-size:13px;z-index:9500;box-shadow:0 8px 24px rgba(0,0,0,.25);max-width:90vw;}
+  .ct-toast.erro{background:#8A3B26;}
+  @media (max-width: 980px){
+    .ct-form,.ct-info,.ct-novo-forn{grid-template-columns:1fr;}
+    .ct-head{flex-wrap:wrap;}
+    .ct-modal{padding:18px 16px;}
+  }
 </style>
 </head>
 <body>
@@ -190,6 +306,7 @@
       <a data-page="mrp"><span class="ic">📐</span> Previsto × Realizado</a>
       <a data-page="economia"><span class="ic">📉</span> Economia</a>
       <a data-page="historico"><span class="ic">🗂️</span> Histórico</a>
+      <a data-page="contratos"><span class="ic">📝</span> Contratos</a>
     </nav>
 
     <div class="nav-group-label">Fonte de dados</div>
@@ -969,6 +1086,40 @@
         </div>
       </div>
     </div>
+  
+    <!-- ===================== PÁGINA: CONTRATOS ===================== -->
+    <div id="page-contratos" class="page" style="display:none">
+      <div id="ctBanner"></div>
+
+      <div id="ctLoginBox" class="card ct-login" style="display:none">
+        <h3 style="font-family:'Space Grotesk';margin:0 0 6px;">Controle de contratos</h3>
+        <p>Digite o seu código de acesso. Ele é fornecido por Compras e fica lembrado neste navegador.</p>
+        <div class="ct-login-row">
+          <input id="ctCodigoInput" class="ct-input" type="password" autocomplete="off" spellcheck="false" placeholder="XXXX-XXXX-XXXX-XXXX" maxlength="40" aria-label="Código de acesso">
+          <button id="ctCodigoBtn" class="ct-btn primary" type="button">Entrar</button>
+        </div>
+        <div id="ctLoginErr" class="ct-err"></div>
+      </div>
+
+      <div id="ctConteudo" style="display:none">
+        <div class="card">
+          <div class="ct-head">
+            <div class="ct-tabs" role="tablist">
+              <button type="button" role="tab" class="ct-tab on" data-tab="andamento" aria-selected="true">Em andamento <span class="ct-count" id="ctTagAnd"></span></button>
+              <button type="button" role="tab" class="ct-tab" data-tab="concluidos" aria-selected="false">Concluídos <span class="ct-count" id="ctTagConc"></span></button>
+            </div>
+            <button class="ct-btn primary ct-editor" id="ctBtnNovo" type="button">+ Novo contrato</button>
+          </div>
+          <div class="ct-table-wrap">
+            <table class="ct-table">
+              <thead id="ctThead"></thead>
+              <tbody id="ctTbAnd"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </main>
 </div>
 
@@ -3334,6 +3485,769 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
     main.prepend(banner);
   }
 }
+</script>
+<script>
+// ===================== ABA CONTRATOS (módulo isolado) =====================
+// Controle de contratos, termos de responsabilidade e aditivos (POP-014, 015 e 016).
+// - A página mostra só os contratos EM ANDAMENTO; ao clicar, abre o detalhe com a linha do tempo.
+// - O ROBÔ (tarefa agendada do Claude no Chrome, de hora em hora) cria o contrato a partir da
+//   solicitação do Obra Prima (fornecedor lido no anexo, engenheiro = solicitante) e acompanha a
+//   descrição da solicitação (etapas 2 e 3).
+// - Compras (Tainá) só informa a OC e o link do Clicksign quando o contrato está pronto: isso leva
+//   à etapa 4. Quando todos assinam, o robô salva o PDF na OC e na pasta do engenheiro (5 e 6).
+// - Os dados ficam na base oculta (Google Apps Script + planilha). Sem configuração,
+//   a aba roda em MODO DEMONSTRAÇÃO, salvando só neste navegador.
+(function(){
+  'use strict';
+
+  // ---------- CONFIGURAÇÃO (preencher na implantação — ver IMPLANTACAO.md) ----------
+  const CT_CONFIG = {
+    apiUrl: 'https://script.google.com/macros/s/AKfycbw4mK1Ea3Tbq68CNSZDWGg2Mca-WM5MEmBnRKoGY3vSonogta-P153OtoVU6FYCwHs/exec' // app da Web do Apps Script (planilha Status - Contratos)
+  };
+  const MODO_DEMO = !CT_CONFIG.apiUrl;
+
+  const ETAPAS = {1:'Solicitação do engenheiro',2:'Elaboração do contrato pelo fornecedor',3:'Aprovação do cliente',
+    4:'Enviado para assinatura',5:'Assinado',6:'Processo finalizado',9:'Cancelado'};
+  const ETAPA_CURTA = {1:'Solicitação',2:'Elaboração',3:'Aprovação do cliente',4:'Em assinatura',5:'Assinado',6:'Finalizado',9:'Cancelado'};
+  const MODELOS = ['Contrato','Termo de responsabilidade de entrega','Aditivo de contrato'];
+  // Serviços do POP-014 — também é o nome da subpasta em <obra>/CONTRATOS DE FORNECEDORES/<SERVIÇO>
+  const SERVICOS = ['GESSO', 'CALHAS', 'INFRA AR-CONDICIONADO', 'MARMORARIA', 'ESQUADRIAS', 'LIMPEZA PÓS-OBRA', 'PISCINA', 'ACABAMENTOS DECORATIVOS', 'OUTROS'];
+  const PASTA_CONTRATOS = 'CONTRATOS DE FORNECEDORES';
+  const DIAS_PARADA = 2; // dias úteis sem assinatura para considerar a assinatura parada (POP-014, item 6)
+  const DEMO_KEY = 'ctDemo_v2';
+  const CODIGO_KEY = 'ctCodigoAcesso'; // código de acesso pessoal, lembrado neste navegador
+
+  const st = { contratos:[], pedidos:[], obras:[], fornecedores:[], usuario:null, carregando:false, erro:'' };
+  let iniciado = false, timerAuto = null, aba = 'andamento';
+  const $ = id => document.getElementById(id);
+
+  // ---------- utilidades ----------
+  function esc(v){ return String(v === undefined || v === null ? '' : v).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+  const pad = n => String(n).padStart(2,'0');
+  function agoraIso(){ const d = new Date(); return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`; }
+  function hoje(){ return agoraIso().slice(0,10); }
+  function dataBR(iso){ if(!iso) return '—'; const [y,m,d] = String(iso).slice(0,10).split('-'); return d && m && y ? `${d}/${m}/${y}` : esc(iso); }
+  function dataHoraBR(iso){ if(!iso) return '—'; const t = String(iso).split('T')[1]; return dataBR(iso) + (t ? ' ' + t.slice(0,5) : ''); }
+  // dias úteis (seg–sex) completos desde a data até hoje; feriados não são descontados
+  function diasUteisDesde(iso){
+    if(!iso) return null;
+    const ini = new Date(String(iso).slice(0,10) + 'T00:00:00'); if (isNaN(ini)) return null;
+    const h = new Date(); h.setHours(0,0,0,0);
+    let n = 0; const d = new Date(ini);
+    while (d < h){ d.setDate(d.getDate()+1); const w = d.getDay(); if (w !== 0 && w !== 6) n++; }
+    return n;
+  }
+  function linkClicksignValido(s){
+    const m = String(s||'').match(/^https:\/\/([^\/?#]+)/i); if(!m) return false;
+    const h = m[1].toLowerCase(); return h === 'clicksign.com' || /\.clicksign\.com$/.test(h);
+  }
+  function toast(msg, erro){
+    document.querySelectorAll('.ct-toast').forEach(x => x.remove());
+    const t = document.createElement('div'); t.className = 'ct-toast' + (erro ? ' erro' : ''); t.textContent = msg;
+    document.body.appendChild(t); setTimeout(() => t.remove(), erro ? 6000 : 3200);
+  }
+  function podeEditar(){ return !!st.usuario && st.usuario.papel === 'EDITOR'; }
+  function lerDatas(c){
+    let d = c.datasEtapas;
+    if (typeof d === 'string'){ try { d = JSON.parse(d || '{}'); } catch(e){ d = {}; } }
+    d = Object.assign({}, d || {});
+    if (!d['1']) d['1'] = c.dataSolicitacao || String(c.criadoEm || '').slice(0,10);
+    return d;
+  }
+  function dataInicio(c){ return lerDatas(c)['1'] || ''; }
+  function dataConclusao(c){ const ds = lerDatas(c); return c.etapa === 9 ? (ds['9'] || String(c.etapaDesde||'').slice(0,10)) : (ds['6'] || String(c.finalizadoEm||'').slice(0,10)); }
+  function chaveNome(s){ return String(s || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toUpperCase().replace(/[^A-Z0-9]/g, ''); }
+  function cnpjValido(c){
+    if (!/^\d{14}$/.test(c) || /^(\d)\1{13}$/.test(c)) return false;
+    const calc = (b, pesos) => { const r = pesos.reduce((s, p, i) => s + Number(b[i]) * p, 0) % 11; return r < 2 ? 0 : 11 - r; };
+    return calc(c, [5,4,3,2,9,8,7,6,5,4,3,2]) === Number(c[12]) && calc(c, [6,5,4,3,2,9,8,7,6,5,4,3,2]) === Number(c[13]);
+  }
+  function cnpjFmt(c){ c = String(c || '').replace(/\D/g, ''); return c.length === 14 ? c.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$/, '$1.$2.$3/$4-$5') : c; }
+  function validarFornecedor(f){
+    if (!f.nome || f.nome.length < 2) return 'Informe o nome do fornecedor.';
+    if (f.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(f.email)) return 'E-mail inválido.';
+    if (f.cnpj && !cnpjValido(f.cnpj)) return 'CNPJ inválido.';
+    const dup = st.fornecedores.find(x => chaveNome(x.nome) === chaveNome(f.nome) || (f.cnpj && x.cnpj === f.cnpj));
+    if (dup) return 'Fornecedor já cadastrado: ' + dup.nome + '.';
+    return '';
+  }
+  function acharFornecedorPorNome(nome){ const k = chaveNome(nome); return k ? st.fornecedores.find(f => chaveNome(f.nome) === k) : null; }
+  function inicioParada(c){ return c.ultimaAssinaturaEm || c.enviadoAssinaturaEm || lerDatas(c)['4'] || c.etapaDesde; }
+  function estaParado(c){ if (c.etapa !== 4) return false; const d = diasUteisDesde(inicioParada(c)); return d !== null && d >= DIAS_PARADA; }
+
+  // ---------- validação (mesmas regras do back-end) ----------
+  function validar(c){
+    if (!c.obraNome) return 'Informe a obra.';
+    if (!c.fornecedor) return 'Informe o fornecedor.';
+    if (!MODELOS.includes(c.modelo)) return 'Escolha o tipo de contrato.';
+    if (!['Clicksign','Gov.br'].includes(c.assinatura)) return 'Escolha a forma de assinatura.';
+    if (c.dataSolicitacao && !/^\d{4}-\d{2}-\d{2}$/.test(c.dataSolicitacao)) return 'Data de início inválida.';
+    if (c.dataSolicitacao && (c.dataSolicitacao < '2020-01-01' || c.dataSolicitacao > hoje())) return 'Data de início fora do esperado (no futuro ou ano errado).';
+    if (c.oc && !/^\d{3,10}$/.test(c.oc)) return 'Nº da OC deve ter só números.';
+    if (c.numSolicitacao && !/^[\w.\-\/]{1,20}$/.test(c.numSolicitacao)) return 'Nº da solicitação inválido.';
+    if (c.linkClicksign && !linkClicksignValido(c.linkClicksign)) return 'O link precisa ser um endereço https do Clicksign.';
+    if (c.servico && !SERVICOS.includes(c.servico)) return 'Serviço inválido.';
+    return '';
+  }
+  function faltaParaAssinatura(c){
+    if (!c.oc) return 'Para enviar à assinatura, informe o nº da OC.';
+    if (c.assinatura === 'Clicksign' && !c.linkClicksign) return 'Para enviar à assinatura pelo Clicksign, informe o link do documento.';
+    return '';
+  }
+  // Contrato do Clicksign com OC e link preenchidos vai sozinho para "Enviado para assinatura"
+  function prontoParaAssinatura(c){ return c.assinatura === 'Clicksign' && !!c.oc && linkClicksignValido(c.linkClicksign); }
+  function validarDataEtapa(c, nova, data){
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(data || '')) return 'Informe a data.';
+    if (data > hoje()) return 'A data não pode ser no futuro.';
+    const ds = lerDatas(c); let anterior = '';
+    for (let e = nova - 1; e >= 1; e--) if (ds[String(e)]){ anterior = ds[String(e)]; break; }
+    if (anterior && data < anterior) return 'A data não pode ser anterior à etapa anterior (' + dataBR(anterior) + ').';
+    return '';
+  }
+
+  // =====================================================================
+  //  CAMADA DE DADOS — API (Apps Script) ou DEMONSTRAÇÃO (este navegador)
+  // =====================================================================
+  let codigoMemoria = ''; // usado se o navegador não permitir guardar
+  function lerCodigo(){ try { return localStorage.getItem(CODIGO_KEY) || codigoMemoria; } catch(e){ return codigoMemoria; } }
+  function salvarCodigo(c){ codigoMemoria = c; try { localStorage.setItem(CODIGO_KEY, c); } catch(e){} }
+  function limparCodigo(){ codigoMemoria = ''; try { localStorage.removeItem(CODIGO_KEY); } catch(e){} }
+
+  async function chamar(action, payload){
+    if (MODO_DEMO) return demo(action, payload || {});
+    const codigo = lerCodigo();
+    if (!codigo) throw { codigo:'sem_login', mensagem:'Informe o seu código de acesso.' };
+    let resp;
+    try {
+      resp = await fetch(CT_CONFIG.apiUrl, { method:'POST', headers:{'Content-Type':'text/plain;charset=utf-8'},
+        body: JSON.stringify({ action, codigo, payload: payload || {} }) });
+    } catch(e){ throw { codigo:'rede', mensagem:'Sem conexão com a base de contratos.' }; }
+    let j; try { j = await resp.json(); } catch(e){ throw { codigo:'rede', mensagem:'O script respondeu algo inesperado (talvez a implantação não esteja como "Qualquer pessoa" ou seja uma versão antiga).' }; }
+    if (!j.ok) throw j;
+    return j;
+  }
+
+  // ---------- modo demonstração: mesma lógica do back-end, guardada no navegador ----------
+  function demoBase(){
+    let b; try { b = JSON.parse(localStorage.getItem(DEMO_KEY)); } catch(e){ b = null; }
+    b = b || {}; b.contratos = b.contratos || []; b.pedidos = b.pedidos || []; b.execucoes = b.execucoes || []; b.fornecedores = b.fornecedores || [];
+    return b;
+  }
+  function demoGravar(b){ try { localStorage.setItem(DEMO_KEY, JSON.stringify(b)); } catch(e){ throw { mensagem:'Não foi possível salvar neste navegador.' }; } }
+  function demoId(p){ return p + '-' + Math.random().toString(36).slice(2,10).toUpperCase(); }
+  function demoObras(){
+    const out = []; const dl = document.getElementById('fObraList');
+    if (dl) dl.querySelectorAll('option').forEach(o => { if (o.value) out.push({ obraId:'', nome:o.value, situacao:'' }); });
+    return out;
+  }
+  function hist(c, acao, por){ c.historico = (c.historico || []).concat([{ em: agoraIso(), por: por || 'você (demonstração)', acao }]).slice(-60); c.atualizadoEm = agoraIso(); }
+  function demoAchar(b, id){ const c = b.contratos.find(x => x.id === id); if(!c) throw { mensagem:'Contrato não encontrado.' }; return c; }
+  async function demo(action, p){
+    const b = demoBase();
+    const usuario = { email:'demonstração', papel:'EDITOR', nome:'' };
+    const campos = ['dataSolicitacao','numSolicitacao','obraId','obraNome','engenheiro','servico','fornecedorId','modelo','assinatura','oc','linkClicksign','observacoes'];
+    const autoAssinatura = c => {
+      if (c.etapa >= 4 || !prontoParaAssinatura(c)) return;
+      const ds = lerDatas(c); const t = agoraIso(); ds['4'] = t.slice(0,10);
+      hist(c, 'OC e link do Clicksign informados → ' + ETAPAS[4]);
+      Object.assign(c, { etapa:4, etapaDesde:t, enviadoAssinaturaEm:t, pendentesAssinatura:'', ultimaAssinaturaEm:'', ultimaFalha:'', datasEtapas:ds });
+    };
+    const aplicarForn = c => { const f = b.fornecedores.find(x => x.id === c.fornecedorId); if (!f) throw { mensagem:'Escolha o fornecedor na lista ou cadastre um novo.' }; c.fornecedor = f.nome; };
+    const limpa = v => v === undefined || v === null ? '' : String(v).replace(/\s+/g,' ').trim().slice(0,500);
+    const ret = extra => { demoGravar(b); return Object.assign({ ok:true, usuario }, extra || {}); };
+    switch(action){
+      case 'listar':
+        return { ok:true, usuario, dados:{ contratos:b.contratos, pedidos:b.pedidos.filter(x => x.status==='PENDENTE'||x.status==='EM_EXECUCAO'), obras:demoObras(),
+          fornecedores:b.fornecedores.slice().sort((x,y) => x.nome.localeCompare(y.nome,'pt-BR')) } };
+      case 'criarFornecedor': {
+        const f = { nome:limpa(p.nome).slice(0,150), email:limpa(p.email).toLowerCase(), cnpj:limpa(p.cnpj).replace(/\D/g,'') };
+        const salvo = st.fornecedores; st.fornecedores = b.fornecedores; const e = validarFornecedor(f); st.fornecedores = salvo;
+        if (e) throw { mensagem:e };
+        Object.assign(f, { id:demoId('FN'), criadoEm:agoraIso(), criadoPor:usuario.email }); b.fornecedores.push(f); return ret({ fornecedor:f });
+      }
+      case 'criar': {
+        const c = {}; campos.forEach(k => c[k] = limpa(p[k]));
+        if (!c.dataSolicitacao) c.dataSolicitacao = hoje();
+        if (!c.assinatura) c.assinatura = c.modelo === 'Termo de responsabilidade de entrega' ? 'Gov.br' : 'Clicksign';
+        aplicarForn(c);
+        const e = validar(c); if (e) throw { mensagem:e };
+        if (c.numSolicitacao && b.contratos.some(x => x.numSolicitacao === c.numSolicitacao && x.etapa !== 9)) throw { mensagem:'Já existe um contrato em aberto para a solicitação ' + c.numSolicitacao + '.' };
+        c.origem = 'MANUAL';
+        const t = agoraIso();
+        Object.assign(c, { id:demoId('CT'), criadoEm:t, criadoPor:usuario.email, etapa:1, etapaDesde:t, datasEtapas:{ '1':c.dataSolicitacao }, historico:[] });
+        hist(c, 'Criado em: ' + ETAPAS[1]); autoAssinatura(c); b.contratos.push(c); return ret({ contrato:c });
+      }
+      case 'atualizar': {
+        const c = demoAchar(b, p.id);
+        if (c.etapa >= 5) throw { mensagem:'Contrato já assinado ou cancelado: não pode mais ser editado.' };
+        const novo = Object.assign({}, c); const mud = [];
+        campos.forEach(k => { if (k in p){ const v = limpa(p[k]); if (String(c[k]||'') !== v){ novo[k] = v; mud.push(k); } } });
+        if (mud.includes('fornecedorId')) aplicarForn(novo);
+        const e = validar(novo) || (novo.etapa === 4 ? faltaParaAssinatura(novo) : ''); if (e) throw { mensagem:e };
+        if (mud.includes('dataSolicitacao')){ const ds = lerDatas(novo); ds['1'] = novo.dataSolicitacao; novo.datasEtapas = ds; }
+        Object.assign(c, novo); if (mud.length) hist(c, 'Editado: ' + mud.join(', ')); autoAssinatura(c); return ret({ contrato:c });
+      }
+      case 'mudarEtapa': {
+        const c = demoAchar(b, p.id); const nova = Number(p.etapa);
+        if (!(nova >= 1 && nova <= 4)) throw { mensagem:'Etapas 5 e 6 são do robô.' };
+        if (c.etapa >= 5) throw { mensagem:'Contrato já assinado ou cancelado.' };
+        if (nova === c.etapa) return ret({ contrato:c });
+        const ds = lerDatas(c);
+        if (nova > c.etapa){
+          const data = p.data || hoje(); const e = validarDataEtapa(c, nova, data); if (e) throw { mensagem:e };
+          if (nova === 4){ const f = faltaParaAssinatura(c); if (f) throw { mensagem:f }; c.enviadoAssinaturaEm = data + 'T' + agoraIso().slice(11); c.pendentesAssinatura=''; c.ultimaAssinaturaEm=''; c.ultimaFalha=''; }
+          for (let k = c.etapa + 1; k <= nova; k++) ds[String(k)] = data;
+          hist(c, ETAPAS[c.etapa] + ' → ' + ETAPAS[nova] + ' (' + dataBR(data) + ')');
+        } else {
+          Object.keys(ds).forEach(k => { if (Number(k) > nova) delete ds[k]; });
+          hist(c, 'Voltou: ' + ETAPAS[c.etapa] + ' → ' + ETAPAS[nova]);
+        }
+        c.datasEtapas = ds; c.etapa = nova; c.etapaDesde = agoraIso(); return ret({ contrato:c });
+      }
+      case 'cancelar': {
+        const c = demoAchar(b, p.id); const m = limpa(p.motivo);
+        if (!m) throw { mensagem:'Informe o motivo do cancelamento.' };
+        if (c.etapa === 6 || c.etapa === 9) throw { mensagem:'Contrato já finalizado ou cancelado.' };
+        const ds = lerDatas(c); ds['9'] = hoje();
+        c.etapaAntesCancelar = c.etapa; hist(c, 'Cancelado: ' + m); Object.assign(c, { etapa:9, etapaDesde:agoraIso(), motivoCancelamento:m, datasEtapas:ds }); return ret({ contrato:c });
+      }
+      case 'reabrir': {
+        const c = demoAchar(b, p.id); if (c.etapa !== 9) throw { mensagem:'Só contratos cancelados podem ser reabertos.' };
+        const v = Math.min(4, Number(c.etapaAntesCancelar) || 1); const ds = lerDatas(c);
+        Object.keys(ds).forEach(k => { if (Number(k) > v) delete ds[k]; });
+        hist(c, 'Reaberto em: ' + ETAPAS[v]); Object.assign(c, { etapa:v, etapaDesde:agoraIso(), motivoCancelamento:'', datasEtapas:ds }); return ret({ contrato:c });
+      }
+      case 'enviarPdf': {
+        const c = demoAchar(b, p.id);
+        if (c.assinatura !== 'Gov.br') throw { mensagem:'Upload manual é só para assinaturas pelo Gov.br.' };
+        if (c.etapa !== 4) throw { mensagem:'Envie o PDF quando o contrato estiver em "Enviado para assinatura".' };
+        const t = agoraIso(); const ds = lerDatas(c); ds['5'] = t.slice(0,10);
+        c.pdfNome = p.nome + ' (demonstração: arquivo não guardado)'; c.pdfUrl = '';
+        hist(c, 'PDF assinado (Gov.br) enviado pela página → ' + ETAPAS[5]);
+        Object.assign(c, { etapa:5, etapaDesde:t, assinadoEm:t, pendentesAssinatura:'', ultimaFalha:'', datasEtapas:ds }); return ret({ contrato:c });
+      }
+      case 'pedirFinalizacao': {
+        const c = demoAchar(b, p.contratoId);
+        if (c.etapa !== 4 && c.etapa !== 5) throw { mensagem:'Finalização só para contratos em assinatura ou assinados.' };
+        const ja = b.pedidos.find(x => (x.status==='PENDENTE'||x.status==='EM_EXECUCAO') && (x.contratoId===c.id || x.contratoId==='TODOS'));
+        if (ja) return ret({ pedido:ja });
+        const ped = { id:demoId('PD'), contratoId:c.id, solicitadoEm:agoraIso(), solicitadoPor:usuario.email, status:'PENDENTE', executadoEm:'', resultado:'' };
+        b.pedidos.push(ped); return ret({ pedido:ped });
+      }
+      default: throw { mensagem:'Ação desconhecida.' };
+    }
+  }
+
+  // Simulação do robô (só na demonstração): reproduz o que a rotina real faz, sem Obra Prima nem Clicksign.
+  // Cada execução avança cada contrato no máximo uma etapa, para dar para acompanhar.
+  function demoSimularRobo(){
+    const b = demoBase(); const t = agoraIso(); const d = t.slice(0,10); const R = 'robô (simulação)';
+    const novas = [
+      { numSolicitacao:'S-2001', obraNome:'Obra Exemplo A', engenheiro:'ENGENHEIRO EXEMPLO 1', servico:'ESQUADRIAS', fornecedor:'Vidraçaria Exemplo', cnpj:'11222333000181', pagto:'40% de entrada e 60% na entrega' },
+      { numSolicitacao:'S-2002', obraNome:'Obra Exemplo A', engenheiro:'ENGENHEIRO EXEMPLO 1', servico:'GESSO', fornecedor:'Gesso Exemplo', cnpj:'', pagto:'3x sem entrada' }
+    ];
+    const jaAndou = new Set();
+    // Passo A — Obra Prima: nova solicitação de serviço do POP-014 vira contrato na etapa 1
+    const nova = novas.find(n => !b.contratos.some(c => c.numSolicitacao === n.numSolicitacao));
+    if (nova){
+      let f = b.fornecedores.find(x => chaveNome(x.nome) === chaveNome(nova.fornecedor));
+      if (!f){ f = { id:demoId('FN'), nome:nova.fornecedor, email:'', cnpj:nova.cnpj, criadoEm:t, criadoPor:R }; b.fornecedores.push(f); }
+      const aditivo = b.contratos.some(c => c.etapa !== 9 && c.obraNome === nova.obraNome && c.fornecedorId === f.id);
+      const c = { id:demoId('CT'), origem:'ROBO', criadoEm:t, criadoPor:R, dataSolicitacao:d, numSolicitacao:nova.numSolicitacao, obraId:'', engenheiro:nova.engenheiro, servico:nova.servico,
+        obraNome:nova.obraNome, fornecedorId:f.id, fornecedor:f.nome, modelo: aditivo ? 'Aditivo de contrato' : 'Contrato', assinatura:'Clicksign',
+        oc:'', linkClicksign:'', observacoes:'Pagamento (anexo da solicitação): ' + nova.pagto, etapa:1, etapaDesde:t, datasEtapas:{ '1':d }, historico:[] };
+      hist(c, 'Criado a partir da solicitação ' + nova.numSolicitacao + ' do Obra Prima' + (aditivo ? ' (mesmo fornecedor já contratado na obra → Aditivo)' : ''), R);
+      b.contratos.push(c); jaAndou.add(c.id);
+    }
+    b.contratos.forEach(c => {
+      if (jaAndou.has(c.id) || c.simularParada || c.simularFalha) return;
+      const ds = lerDatas(c);
+      // Passo B — descrição da solicitação: AGUARDANDO CONTRATO → 2, AGUARDANDO CLIENTE → 3
+      if (c.etapa === 1 || c.etapa === 2){
+        const n = c.etapa + 1; ds[String(n)] = d;
+        hist(c, `Obra Prima: descrição "${n === 2 ? 'AGUARDANDO CONTRATO' : 'AGUARDANDO CLIENTE'}" → ${ETAPAS[n]}`, R);
+        Object.assign(c, { etapa:n, etapaDesde:t, datasEtapas:ds }); jaAndou.add(c.id); return;
+      }
+    });
+    b.contratos.forEach(c => {
+      if (c.etapa === 4 && c.assinatura === 'Clicksign'){
+        c.ultimaVerificacaoEm = t;
+        if (c.simularParada){ c.pendentesAssinatura = 'Cliente'; return; }
+        if (jaAndou.has(c.id)) return;
+        const ds = lerDatas(c); ds['5'] = d;
+        hist(c, 'Clicksign: todos assinaram → PDF assinado baixado', R);
+        Object.assign(c, { etapa:5, etapaDesde:t, assinadoEm:t, pendentesAssinatura:'', pdfNome:'Sol ' + c.numSolicitacao + ' - assinado.pdf', datasEtapas:ds });
+        jaAndou.add(c.id);
+      }
+    });
+    b.contratos.forEach(c => {
+      if (c.etapa !== 5 || jaAndou.has(c.id)) return;
+      if (c.simularFalha){ c.ultimaFalha = dataHoraBR(t) + ' — OC ' + c.oc + ' não encontrada no Obra Prima'; return; }
+      const ds = lerDatas(c); ds['6'] = d;
+      hist(c, 'PDF salvo na OC ' + c.oc + ' e no Drive em ' + PASTA_CONTRATOS + '/' + (c.servico || 'OUTROS') + ' → Processo finalizado', R);
+      Object.assign(c, { etapa:6, etapaDesde:t, anexadoOcEm:t, salvoPastaEngEm:t, finalizadoEm:t, ultimaFalha:'', alerta:'', datasEtapas:ds });
+    });
+    demoGravar(b);
+  }
+
+  function demoExemplos(){
+    const b = demoBase(); if (b.contratos.length && !confirm('Já há contratos na demonstração. Adicionar os exemplos mesmo assim?')) return;
+    const du = n => { const x = new Date(); let k = 0; while (k < n){ x.setDate(x.getDate()-1); if (x.getDay()!==0 && x.getDay()!==6) k++; }
+      return `${x.getFullYear()}-${pad(x.getMonth()+1)}-${pad(x.getDate())}`; };
+    const ex = (o, datas) => {
+      const ds = {}; datas.forEach((v,i) => ds[String(i+1)] = du(v));
+      return Object.assign({ id:demoId('CT'), origem:'ROBO', criadoEm:ds['1'] + 'T09:00:00', criadoPor:'exemplo', obraId:'', observacoes:'',
+        engenheiro: ['ENGENHEIRO EXEMPLO 1','ENGENHEIRO EXEMPLO 2'][(o.obraNome || '').endsWith('B') ? 1 : 0],
+        servico: ({Gesso:'GESSO',Calhas:'CALHAS',Marmoraria:'MARMORARIA',Infra:'INFRA AR-CONDICIONADO',Esquadrias:'ESQUADRIAS',Piscina:'PISCINA'})[String(o.fornecedor||'').split(' ')[0]] || '',
+        dataSolicitacao:ds['1'], datasEtapas:ds, etapa:datas.length, etapaDesde:ds[String(datas.length)] + 'T09:00:00',
+        historico:[{ em:ds['1'] + 'T09:00:00', por:'exemplo', acao:'Exemplo fictício para demonstração' }] }, o);
+    };
+    [
+      ex({ numSolicitacao:'S-1001', obraNome:'Obra Exemplo A', fornecedor:'Gesso Exemplo', modelo:'Contrato', assinatura:'Clicksign', oc:'', linkClicksign:'' }, [1]),
+      ex({ numSolicitacao:'S-1008', obraNome:'Obra Exemplo C', fornecedor:'', modelo:'Contrato', assinatura:'Clicksign', oc:'', linkClicksign:'', alerta:'Fornecedor não identificado no anexo da solicitação — confira e preencha.', simularParada:true }, [2]),
+      ex({ numSolicitacao:'S-1002', obraNome:'Obra Exemplo B', fornecedor:'Calhas Exemplo', modelo:'Contrato', assinatura:'Clicksign', oc:'', linkClicksign:'' }, [5,3]),
+      ex({ numSolicitacao:'S-1003', obraNome:'Obra Exemplo C', fornecedor:'Marmoraria Exemplo', modelo:'Contrato', assinatura:'Clicksign', oc:'90001', linkClicksign:'' }, [7,5,2]),
+      ex({ numSolicitacao:'S-1004', obraNome:'Obra Exemplo A', fornecedor:'Infra Ar Exemplo', modelo:'Contrato', assinatura:'Clicksign', oc:'90002', linkClicksign:'https://app.clicksign.com/exemplo-1' }, [8,6,3,1]),
+      ex({ numSolicitacao:'S-1005', obraNome:'Obra Exemplo B', fornecedor:'Esquadrias Exemplo', modelo:'Aditivo de contrato', assinatura:'Clicksign', oc:'90003', linkClicksign:'https://app.clicksign.com/exemplo-2', pendentesAssinatura:'Cliente', simularParada:true }, [10,8,6,4]),
+      ex({ numSolicitacao:'S-1006', obraNome:'Obra Exemplo C', fornecedor:'Ferragem Exemplo', modelo:'Termo de responsabilidade de entrega', assinatura:'Gov.br', oc:'90004', linkClicksign:'', origem:'MANUAL' }, [9,7,5,3]),
+      ex({ numSolicitacao:'S-1007', obraNome:'Obra Exemplo A', fornecedor:'Piscina Exemplo', modelo:'Contrato', assinatura:'Clicksign', oc:'90005', linkClicksign:'https://app.clicksign.com/exemplo-3', simularFalha:true }, [12,10,8,4,1])
+    ].forEach(c => {
+      let f = c.fornecedor ? b.fornecedores.find(x => x.nome === c.fornecedor) : { id:'' };
+      if (!f){ f = { id:demoId('FN'), nome:c.fornecedor, email:'', cnpj:'', criadoEm:agoraIso(), criadoPor:'exemplo' }; b.fornecedores.push(f); }
+      c.fornecedorId = f.id;
+      if (c.etapa === 4) c.enviadoAssinaturaEm = c.datasEtapas['4'] + 'T09:00:00'; if (c.etapa === 5) c.assinadoEm = c.datasEtapas['5'] + 'T09:00:00'; b.contratos.push(c); });
+    demoGravar(b);
+  }
+
+  // =====================================================================
+  //  ACESSO POR CÓDIGO — só fora da demonstração
+  // =====================================================================
+  let loginLigado = false;
+  function mostrarLogin(msg){
+    $('ctConteudo').style.display = 'none'; $('ctLoginBox').style.display = '';
+    $('ctLoginErr').textContent = msg || '';
+    const inp = $('ctCodigoInput'); inp.value = ''; inp.focus();
+    if (loginLigado) return; loginLigado = true;
+    const entrar = async () => {
+      const c = inp.value.trim().toUpperCase();
+      if (c.replace(/[^A-Z0-9]/g,'').length < 12){ $('ctLoginErr').textContent = 'Digite o código completo (ex.: ABCD-EFGH-JKLM-NPQR).'; return; }
+      $('ctLoginErr').textContent = 'Entrando…'; $('ctCodigoBtn').disabled = true;
+      salvarCodigo(c); await carregar(); $('ctCodigoBtn').disabled = false;
+    };
+    $('ctCodigoBtn').addEventListener('click', entrar);
+    inp.addEventListener('keydown', ev => { if (ev.key === 'Enter') entrar(); });
+  }
+
+  // =====================================================================
+  //  LISTA "EM ANDAMENTO"
+  // =====================================================================
+  async function carregar(silencioso){
+    if (st.carregando) return; st.carregando = true;
+    try {
+      const j = await chamar('listar');
+      const d = j.dados || {};
+      st.contratos = (d.contratos || []).map(c => Object.assign({}, c, { etapa: Number(c.etapa) || 1,
+        historico: Array.isArray(c.historico) ? c.historico : (() => { try { return JSON.parse(c.historico || '[]'); } catch(e){ return []; } })() }));
+      st.pedidos = d.pedidos || [];
+      st.obras = d.obras || [];
+      st.fornecedores = d.fornecedores || [];
+      st.usuario = j.usuario || null;
+      st.erro = '';
+      $('ctLoginBox').style.display = 'none'; $('ctConteudo').style.display = '';
+      render();
+    } catch(e){
+      if (e && ['sem_login','nao_autorizado','bloqueado_login'].includes(e.codigo)){ limparCodigo(); mostrarLogin(e.codigo === 'sem_login' ? '' : e.mensagem); }
+      else if (!silencioso){
+        st.erro = (e && e.mensagem) || 'Erro ao carregar os contratos.'; renderBanner();
+        // na tela de acesso, mostra o erro ali mesmo (ex.: sem conexão com o script)
+        if ($('ctLoginBox').style.display !== 'none') $('ctLoginErr').textContent = st.erro + ' Confira se o script foi implantado como "Qualquer pessoa".';
+      }
+    } finally { st.carregando = false; }
+  }
+
+  function renderBanner(){
+    let h = '';
+    if (MODO_DEMO) h += `<div class="ct-banner demo"><b>Modo demonstração</b> — dados só neste navegador.
+      <span class="ct-demo-links"><a href="#" data-demo="exemplos">Carregar exemplos</a> · <a href="#" data-demo="simular">Simular robô</a> · <a href="#" data-demo="limpar">Limpar</a></span></div>`;
+    if (st.erro) h += `<div class="ct-banner erro">${esc(st.erro)}</div>`;
+    if (!MODO_DEMO && st.usuario) h += `<div class="ct-banner info" style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;"><span>${podeEditar() ? 'Acesso de edição' : 'Acesso de consulta'} · ${esc(st.usuario.nome || st.usuario.email)}</span><a href="#" data-sair="1">Sair</a></div>`;
+    $('ctBanner').innerHTML = h;
+  }
+
+  function tagEtapa(c){
+    const parada = estaParado(c);
+    const titulo = parada ? `Assinatura parada há ${diasUteisDesde(inicioParada(c))} dias úteis` : ETAPAS[c.etapa];
+    const aviso = c.alerta || c.ultimaFalha;
+    return `<span class="ct-badge e${c.etapa}${parada ? ' parada' : ''}" title="${esc(titulo)}">${esc(ETAPA_CURTA[c.etapa] || c.etapa)}</span>${aviso ? ` <span class="ct-aviso" title="${esc(aviso)}">!</span>` : ''}`;
+  }
+
+  function render(){
+    renderBanner();
+    $('ctBtnNovo').style.display = podeEditar() ? '' : 'none';
+    const ativos = st.contratos.filter(c => c.etapa >= 1 && c.etapa <= 5)
+      .sort((a,b) => dataInicio(b).localeCompare(dataInicio(a)) || String(b.criadoEm||'').localeCompare(String(a.criadoEm||'')));
+    const concluidos = st.contratos.filter(c => c.etapa === 6 || c.etapa === 9)
+      .sort((a,b) => dataConclusao(b).localeCompare(dataConclusao(a)));
+    $('ctTagAnd').textContent = ativos.length || '';
+    $('ctTagConc').textContent = concluidos.length || '';
+    document.querySelectorAll('#page-contratos .ct-tab').forEach(t => { const on = t.dataset.tab === aba; t.classList.toggle('on', on); t.setAttribute('aria-selected', on ? 'true' : 'false'); });
+    const conc = aba === 'concluidos';
+    const lista = conc ? concluidos : ativos;
+    $('ctThead').innerHTML = `<tr><th>Obra</th><th>Engenheiro</th><th>Fornecedor</th><th>Tipo de contrato</th><th>Solicitação</th><th>Ordem de compra</th><th>Data de início</th>${conc ? '<th>Conclusão</th>' : ''}<th>Etapa</th></tr>`;
+    const tb = $('ctTbAnd');
+    if (!lista.length){ tb.innerHTML = `<tr><td colspan="${conc ? 9 : 8}"><div class="empty-note">${conc ? 'Nenhum contrato concluído ainda.' : 'Nenhum contrato em andamento.'}</div></td></tr>`; return; }
+    tb.innerHTML = lista.map(c => `<tr class="ct-row" data-id="${esc(c.id)}" tabindex="0">
+      <td class="obra" title="${esc(c.obraNome)}">${esc(c.obraNome || '—')}</td>
+      <td class="eng" title="${esc(c.engenheiro)}">${esc(c.engenheiro || '—')}</td>
+      <td class="forn" title="${esc(c.fornecedor)}">${c.fornecedor ? esc(c.fornecedor) : '<span class="ct-adef">a definir</span>'}</td>
+      <td>${esc(c.modelo)}</td>
+      <td class="mono">${esc(c.numSolicitacao || '—')}</td>
+      <td class="mono">${esc(c.oc || '—')}</td>
+      <td class="mono">${dataBR(dataInicio(c))}</td>
+      ${conc ? `<td class="mono">${dataBR(dataConclusao(c))}</td>` : ''}
+      <td>${tagEtapa(c)}</td></tr>`).join('');
+  }
+
+  // =====================================================================
+  //  JANELA DO CONTRATO (detalhe + linha do tempo + ações)
+  // =====================================================================
+  function fecharModal(){ const m = document.querySelector('.ct-modal-bg'); if (m) m.remove(); document.removeEventListener('keydown', escFecha); }
+  function escFecha(ev){ if (ev.key === 'Escape') fecharModal(); }
+  function abrirModal(html){
+    fecharModal();
+    const bg = document.createElement('div'); bg.className = 'ct-modal-bg';
+    bg.innerHTML = `<div class="ct-modal" role="dialog" aria-modal="true">${html}</div>`;
+    bg.addEventListener('mousedown', ev => { if (ev.target === bg) fecharModal(); });
+    document.body.appendChild(bg); document.addEventListener('keydown', escFecha);
+    const f = bg.querySelector('[autofocus]') || bg.querySelector('.ct-modal button'); if (f) f.focus();
+    return bg;
+  }
+
+  function linhaDoTempo(c){
+    const ds = lerDatas(c); const cancelado = c.etapa === 9;
+    const atual = cancelado ? Number(c.etapaAntesCancelar) || 1 : c.etapa;
+    let h = '<ol class="ct-tl">';
+    [1,2,3,4,5,6].forEach(e => {
+      const feito = e < atual || (e === 6 && atual === 6); // etapas anteriores contam como feitas, mesmo se o robô pulou (sem data)
+      const corrente = !cancelado && e === c.etapa && e < 6;
+      const cls = corrente ? 'cur' : (feito ? 'done' : '');
+      let extra = '';
+      if (corrente){
+        const du = diasUteisDesde(ds[String(e)]);
+        extra = `<div class="ct-tl-sub">${du === null ? '' : (du === 0 ? 'desde hoje' : 'há ' + du + (du === 1 ? ' dia útil' : ' dias úteis'))}</div>`;
+        if (e < 4) extra += `<div class="ct-tl-sub">${c.assinatura === 'Clicksign' ? (e === 3 ? 'com o contrato pronto, informe a OC e o link do Clicksign' : 'o robô acompanha a descrição da solicitação no Obra Prima · com o contrato pronto, informe a OC e o link') : 'avance manualmente quando o termo for enviado para assinatura'}</div>`;
+        if (e === 4 && c.assinatura === 'Clicksign'){
+          if (c.pendentesAssinatura) extra += `<div class="ct-tl-alert">Falta assinar: ${esc(c.pendentesAssinatura)}</div>`;
+          if (estaParado(c)) extra += `<div class="ct-tl-alert">Assinatura parada há ${diasUteisDesde(inicioParada(c))} dias úteis</div>`;
+          if (c.ultimaVerificacaoEm) extra += `<div class="ct-tl-sub">conferido pelo robô em ${dataHoraBR(c.ultimaVerificacaoEm)}</div>`;
+        }
+        if (e === 4 && c.assinatura === 'Gov.br') extra += `<div class="ct-tl-sub">aguardando o PDF assinado pelo Gov.br${estaParado(c) ? ' · <b style="color:var(--rust)">parado há ' + diasUteisDesde(inicioParada(c)) + ' dias úteis</b>' : ''}</div>`;
+        if (e === 5) extra += `<div class="ct-tl-sub">o robô salva o PDF na OC ${esc(c.oc)} e no Drive da obra (${PASTA_CONTRATOS} / ${esc(c.servico || 'OUTROS')}) na próxima execução</div>`;
+      }
+      if (e === 5 && feito && c.pdfNome){
+        const pdf = c.pdfUrl && /^https:\/\/(drive|docs)\.google\.com\//.test(c.pdfUrl) ? `<a href="${esc(c.pdfUrl)}" target="_blank" rel="noopener noreferrer">${esc(c.pdfNome)} ↗</a>` : esc(c.pdfNome);
+        extra += `<div class="ct-tl-sub">${pdf}</div>`;
+      }
+      if (e === 6 && feito) extra += `<div class="ct-tl-sub">PDF salvo na OC ${esc(c.oc)}${c.salvoPastaEngEm ? ` e no Drive da obra (${PASTA_CONTRATOS} / ${esc(c.servico || 'OUTROS')})` : ''}</div>`;
+      if (e >= 5 && !feito && !corrente) extra += `<div class="ct-tl-sub">automático (robô)</div>`;
+      h += `<li class="${cls}"><span class="ct-tl-dot"></span><div class="ct-tl-body">
+        <div class="ct-tl-row"><span class="ct-tl-name">${esc(ETAPAS[e])}</span><span class="ct-tl-date">${feito || corrente ? (ds[String(e)] ? dataBR(ds[String(e)]) : 'sem data') : ''}</span></div>${extra}</div></li>`;
+    });
+    if (cancelado) h += `<li class="canc"><span class="ct-tl-dot"></span><div class="ct-tl-body"><div class="ct-tl-row"><span class="ct-tl-name">Cancelado</span><span class="ct-tl-date">${dataBR(ds['9'] || c.etapaDesde)}</span></div><div class="ct-tl-sub">${esc(c.motivoCancelamento || '')}</div></div></li>`;
+    return h + '</ol>';
+  }
+
+  function abrirDetalhe(id){
+    const c = st.contratos.find(x => x.id === id); if (!c) return;
+    const link = c.assinatura === 'Clicksign' && linkClicksignValido(c.linkClicksign) ? ` · <a href="${esc(c.linkClicksign)}" target="_blank" rel="noopener noreferrer">abrir ↗</a>` : '';
+    const campo = (k, v) => `<div><dt>${k}</dt><dd>${v}</dd></div>`;
+    // O robô cuida do andamento; os botões abaixo são só para exceções e correções.
+    let principal = '';
+    if (podeEditar()){
+      if (c.etapa < 4 && c.assinatura === 'Clicksign') principal = `<button class="ct-btn primary" type="button" data-d="oclink" autofocus>Informar OC e link do Clicksign</button>`;
+      if (c.etapa === 4 && c.assinatura === 'Gov.br') principal = `<button class="ct-btn primary" type="button" data-d="pdf" autofocus>Enviar PDF assinado</button>`;
+      if (c.etapa === 9) principal = `<button class="ct-btn primary" type="button" data-d="reabrir">Reabrir</button>`;
+    }
+    const secundarios = podeEditar() ? [
+      c.etapa <= 4 ? `<button class="ct-btn" type="button" data-d="editar">Editar</button>` : '',
+      c.etapa < 4 ? `<button class="ct-btn" type="button" data-d="avancar" title="Correção manual: o robô normalmente avança sozinho">Avançar etapa</button>` : '',
+      c.etapa > 1 && c.etapa <= 4 ? `<button class="ct-btn" type="button" data-d="voltar">Voltar etapa</button>` : '',
+      c.etapa <= 5 ? `<button class="ct-btn danger" type="button" data-d="cancelar">Cancelar</button>` : ''
+    ].join('') : '';
+    const avisos = [
+      c.alerta ? `<div class="ct-banner demo" style="margin:0 0 12px;display:block;">Robô pede conferência: ${esc(c.alerta)}</div>` : '',
+      c.ultimaFalha ? `<div class="ct-banner erro" style="margin:0 0 12px;">Robô: ${esc(c.ultimaFalha)}</div>` : ''
+    ].join('');
+    const origem = c.origem === 'ROBO' ? 'automático, pela solicitação ' + esc(c.numSolicitacao || '') : 'manual';
+    const bg = abrirModal(`
+      <div class="ct-modal-top"><div><h3>${c.fornecedor ? esc(c.fornecedor) : 'Fornecedor a definir'}</h3><div class="ct-modal-sub">${esc(c.obraNome)}</div></div>
+        <button class="ct-x" type="button" data-d="fechar" aria-label="Fechar">×</button></div>
+      <dl class="ct-info">
+        ${(() => { const f = st.fornecedores.find(x => x.id === c.fornecedorId); return f && (f.cnpj || f.email) ? `<div class="full"><dt>Fornecedor</dt><dd>${[f.cnpj ? 'CNPJ ' + esc(cnpjFmt(f.cnpj)) : '', f.email ? `<a href="mailto:${esc(f.email)}">${esc(f.email)}</a>` : ''].filter(Boolean).join(' · ')}</dd></div>` : ''; })()}
+        ${campo('Engenheiro', esc(c.engenheiro || '—'))}
+        ${campo('Serviço', esc(c.servico || '—'))}
+        ${campo('Tipo de contrato', esc(c.modelo))}
+        ${campo('Solicitação', esc(c.numSolicitacao || '—'))}
+        ${campo('Ordem de compra', esc(c.oc || '—'))}
+        ${campo('Assinatura', esc(c.assinatura) + link)}
+        ${campo('Cadastro', origem)}
+        ${c.observacoes ? `<div class="full"><dt>Observações</dt><dd>${esc(c.observacoes)}</dd></div>` : ''}
+      </dl>
+      ${avisos}
+      <div class="ct-sec-title">Linha do tempo</div>
+      ${linhaDoTempo(c)}
+      <div id="ctAvanco"></div>
+      <details class="ct-hist-wrap"><summary>Histórico completo (${(c.historico || []).length})</summary>
+        <div class="ct-hist">${(c.historico || []).slice().reverse().map(h => `<div><span class="mono">${dataHoraBR(h.em)} · ${esc(h.por)}</span><br>${esc(h.acao)}</div>`).join('') || '<div>—</div>'}</div></details>
+      <div class="ct-modal-foot" id="ctFoot"><div class="left">${secundarios}</div><div class="right">${principal}</div></div>`);
+
+    bg.querySelectorAll('[data-d]').forEach(b => b.addEventListener('click', () => {
+      const a = b.dataset.d;
+      if (a === 'fechar') fecharModal();
+      if (a === 'editar') abrirForm(c);
+      if (a === 'cancelar') abrirCancelar(c);
+      if (a === 'pdf') abrirUpload(c);
+      if (a === 'reabrir') acao('reabrir', { id:c.id }, 'Contrato reaberto.', c.id);
+      if (a === 'voltar') acao('mudarEtapa', { id:c.id, etapa:c.etapa - 1 }, 'Voltou para: ' + ETAPAS[c.etapa - 1], c.id);
+      if (a === 'avancar') pedirDataAvanco(bg, c);
+      if (a === 'oclink') pedirOcLink(bg, c);
+    }));
+  }
+
+  // Avançar pede a data em que a etapa aconteceu (padrão: hoje) e registra na linha do tempo
+  function pedirDataAvanco(bg, c){
+    const nova = c.etapa + 1;
+    if (nova === 4){ const f = faltaParaAssinatura(c); if (f){ toast(f + ' Edite o contrato antes.', true); abrirForm(c); return; } }
+    const box = bg.querySelector('#ctAvanco');
+    box.innerHTML = `<div class="ct-avanco">
+      <label for="ctDataAv">Data em que entrou em <b>${esc(ETAPAS[nova])}</b></label>
+      <div class="ct-avanco-row"><input type="date" class="ct-input" id="ctDataAv" value="${hoje()}" max="${hoje()}">
+      <button class="ct-btn" type="button" id="ctAvCancel">Cancelar</button>
+      <button class="ct-btn primary" type="button" id="ctAvOk">Confirmar</button></div>
+      <div class="ct-err" id="ctAvErr"></div></div>`;
+    bg.querySelector('#ctFoot').style.display = 'none';
+    const inp = box.querySelector('#ctDataAv'); inp.focus();
+    box.querySelector('#ctAvCancel').addEventListener('click', () => { box.innerHTML = ''; bg.querySelector('#ctFoot').style.display = ''; });
+    box.querySelector('#ctAvOk').addEventListener('click', async ev => {
+      const data = inp.value; const e = validarDataEtapa(c, nova, data);
+      if (e){ box.querySelector('#ctAvErr').textContent = e; return; }
+      ev.target.disabled = true;
+      try { await chamar('mudarEtapa', { id:c.id, etapa:nova, data }); toast('Etapa: ' + ETAPAS[nova]); await carregar(true); abrirDetalhe(c.id); }
+      catch(err){ box.querySelector('#ctAvErr').textContent = (err && err.mensagem) || 'Erro.'; ev.target.disabled = false; }
+    });
+  }
+
+  // Ação principal da Tainá: OC + link do Clicksign → o contrato vai para "Enviado para assinatura"
+  function pedirOcLink(bg, c){
+    const box = bg.querySelector('#ctAvanco');
+    box.innerHTML = `<div class="ct-avanco">
+      <label>Contrato pronto: informe a <b>OC</b> e o <b>link do Clicksign</b>. Ele passa para <b>Enviado para assinatura</b>.</label>
+      <div class="ct-avanco-row">
+        <input class="ct-input" id="ctOLOc" placeholder="Nº da OC" maxlength="10" inputmode="numeric" value="${esc(c.oc || '')}" style="max-width:140px">
+        <input class="ct-input" id="ctOLLink" type="url" placeholder="https://app.clicksign.com/…" maxlength="500" value="${esc(c.linkClicksign || '')}">
+      </div>
+      <div class="ct-avanco-row" style="margin-top:8px;justify-content:flex-end">
+        <button class="ct-btn" type="button" id="ctOLCancel">Cancelar</button>
+        <button class="ct-btn primary" type="button" id="ctOLOk">Salvar e enviar para assinatura</button></div>
+      <div class="ct-err" id="ctOLErr"></div></div>`;
+    bg.querySelector('#ctFoot').style.display = 'none';
+    box.querySelector('#ctOLOc').focus();
+    box.querySelector('#ctOLCancel').addEventListener('click', () => { box.innerHTML = ''; bg.querySelector('#ctFoot').style.display = ''; });
+    box.querySelector('#ctOLOk').addEventListener('click', async ev => {
+      const oc = box.querySelector('#ctOLOc').value.trim(), link = box.querySelector('#ctOLLink').value.trim();
+      const err = box.querySelector('#ctOLErr');
+      if (!/^\d{3,10}$/.test(oc)){ err.textContent = 'Informe o nº da OC (só números).'; return; }
+      if (!linkClicksignValido(link)){ err.textContent = 'Cole o link do documento no Clicksign (https://…clicksign.com/…).'; return; }
+      ev.target.disabled = true;
+      try { await chamar('atualizar', { id:c.id, oc, linkClicksign:link }); toast('Enviado para assinatura. O robô acompanha as assinaturas.'); await carregar(true); abrirDetalhe(c.id); }
+      catch(x){ err.textContent = (x && x.mensagem) || 'Erro ao salvar.'; ev.target.disabled = false; }
+    });
+  }
+
+  async function acao(action, payload, okMsg, reabrirId){
+    try {
+      await chamar(action, payload); if (okMsg) toast(okMsg); await carregar(true);
+      if (reabrirId && st.contratos.some(x => x.id === reabrirId)) abrirDetalhe(reabrirId); else fecharModal();
+    } catch(e){ toast((e && e.mensagem) || 'Erro.', true); }
+  }
+
+  function abrirForm(c){
+    const novo = !c; c = c || { dataSolicitacao: hoje(), modelo:'Contrato', assinatura:'Clicksign' };
+    const obrasOpts = st.obras.map(o => `<option value="${esc(o.nome)}">`).join('');
+    const fornOpts = () => st.fornecedores.map(f => `<option value="${esc(f.nome)}">${f.cnpj ? esc(cnpjFmt(f.cnpj)) : ''}</option>`).join('');
+    const bg = abrirModal(`
+      <div class="ct-modal-top"><div><h3>${novo ? 'Novo contrato' : 'Editar contrato'}</h3>
+        <div class="ct-modal-sub">${novo ? 'Começa em: Solicitação do engenheiro.' : esc(ETAPAS[c.etapa])}</div></div>
+        <button class="ct-x" type="button" id="ctFX" aria-label="Fechar">×</button></div>
+      <form class="ct-form" id="ctForm" autocomplete="off" novalidate>
+        <div class="full"><label for="ctFObra">Obra *</label><input class="ct-input" id="ctFObra" list="ctObrasList" value="${esc(c.obraNome || '')}" maxlength="200" placeholder="Digite e escolha na lista" autofocus>
+          <datalist id="ctObrasList">${obrasOpts}</datalist></div>
+        <div class="full"><div class="ct-label-row"><label for="ctFForn">Fornecedor *</label>${podeEditar() ? '<button type="button" class="ct-link-btn" id="ctBtnNovoForn">+ Cadastrar fornecedor</button>' : ''}</div>
+          <input class="ct-input" id="ctFForn" list="ctFornList" value="${esc(c.fornecedor || '')}" maxlength="150" placeholder="${st.fornecedores.length ? 'Digite e escolha na lista' : 'Nenhum fornecedor cadastrado ainda'}">
+          <datalist id="ctFornList">${fornOpts()}</datalist></div>
+        <div id="ctNovoFornBox" class="ct-novo-forn" style="display:none">
+          <div class="full"><label for="ctNFNome">Nome do fornecedor *</label><input class="ct-input" id="ctNFNome" maxlength="150"></div>
+          <div><label for="ctNFEmail">E-mail</label><input class="ct-input" id="ctNFEmail" type="email" maxlength="150"></div>
+          <div><label for="ctNFCnpj">CNPJ</label><input class="ct-input" id="ctNFCnpj" maxlength="18" inputmode="numeric" placeholder="00.000.000/0000-00"></div>
+          <div class="acoes"><span class="ct-err" id="ctNFErr"></span><button class="ct-btn" type="button" id="ctNFCancel">Cancelar</button><button class="ct-btn primary" type="button" id="ctNFSalvar">Salvar fornecedor</button></div>
+        </div>
+        <div><label for="ctFMod">Tipo de contrato *</label><select class="ct-select" id="ctFMod">${MODELOS.map(m => `<option ${m === c.modelo ? 'selected' : ''}>${esc(m)}</option>`).join('')}</select></div>
+        <div><label for="ctFAss">Assinatura *</label><select class="ct-select" id="ctFAss">${['Clicksign','Gov.br'].map(m => `<option ${m === c.assinatura ? 'selected' : ''}>${m}</option>`).join('')}</select></div>
+        <div><label for="ctFServ">Serviço</label><select class="ct-select" id="ctFServ"><option value="">—</option>${SERVICOS.map(x => `<option ${x === c.servico ? 'selected' : ''}>${esc(x)}</option>`).join('')}</select></div>
+        <div><label for="ctFEng">Engenheiro (solicitante)</label><input class="ct-input" id="ctFEng" value="${esc(c.engenheiro || '')}" maxlength="120"></div>
+        <div><label for="ctFSol">Solicitação</label><input class="ct-input" id="ctFSol" value="${esc(c.numSolicitacao || '')}" maxlength="20" inputmode="numeric"></div>
+        <div><label for="ctFOc">Ordem de compra</label><input class="ct-input" id="ctFOc" value="${esc(c.oc || '')}" maxlength="10" inputmode="numeric"></div>
+        <div><label for="ctFData">Data de início</label><input class="ct-input" type="date" id="ctFData" value="${esc(c.dataSolicitacao || dataInicio(c) || '')}" max="${hoje()}"></div>
+        <div><label for="ctFLink">Link do Clicksign</label><input class="ct-input" id="ctFLink" type="url" value="${esc(c.linkClicksign || '')}" maxlength="500" placeholder="https://app.clicksign.com/…"></div>
+        <div class="full"><label for="ctFObs">Observações</label><textarea class="ct-textarea" id="ctFObs" rows="2" maxlength="500">${esc(c.observacoes || '')}</textarea></div>
+      </form>
+      <div class="ct-hint">Os contratos de serviço são criados e atualizados pelo robô a partir das solicitações do Obra Prima. Use este cadastro para exceções, como termos de responsabilidade (Gov.br; Fênix no Clicksign). Ao preencher a OC e o link do Clicksign, o contrato vai sozinho para “Enviado para assinatura”.</div>
+      <div class="ct-err" id="ctFErr"></div>
+      <div class="ct-modal-foot"><div class="right">
+        <button class="ct-btn" type="button" id="ctFCancel">Cancelar</button>
+        <button class="ct-btn primary" type="button" id="ctFSalvar">${novo ? 'Cadastrar' : 'Salvar'}</button></div></div>`);
+    const modSel = bg.querySelector('#ctFMod'), assSel = bg.querySelector('#ctFAss');
+    if (novo) modSel.addEventListener('change', () => { assSel.value = modSel.value === 'Termo de responsabilidade de entrega' ? 'Gov.br' : 'Clicksign'; });
+    const voltar = () => novo ? fecharModal() : abrirDetalhe(c.id);
+    // cadastro rápido de fornecedor dentro do formulário
+    const boxNF = bg.querySelector('#ctNovoFornBox'), inpForn = bg.querySelector('#ctFForn');
+    const btnNF = bg.querySelector('#ctBtnNovoForn');
+    if (btnNF) btnNF.addEventListener('click', () => {
+      boxNF.style.display = ''; bg.querySelector('#ctNFErr').textContent = '';
+      if (inpForn.value.trim() && !acharFornecedorPorNome(inpForn.value)) bg.querySelector('#ctNFNome').value = inpForn.value.trim();
+      bg.querySelector('#ctNFNome').focus();
+    });
+    bg.querySelector('#ctNFCancel').addEventListener('click', () => { boxNF.style.display = 'none'; });
+    bg.querySelector('#ctNFCnpj').addEventListener('blur', ev => { const d = ev.target.value.replace(/\D/g,''); if (d.length === 14) ev.target.value = cnpjFmt(d); });
+    bg.querySelector('#ctNFSalvar').addEventListener('click', async ev => {
+      const f = { nome: bg.querySelector('#ctNFNome').value.replace(/\s+/g,' ').trim(), email: bg.querySelector('#ctNFEmail').value.trim().toLowerCase(),
+        cnpj: bg.querySelector('#ctNFCnpj').value.replace(/\D/g,'') };
+      const err = bg.querySelector('#ctNFErr'); const e = validarFornecedor(f);
+      if (e){ err.textContent = e; return; }
+      ev.target.disabled = true;
+      try {
+        const r = await chamar('criarFornecedor', f);
+        st.fornecedores = st.fornecedores.concat([r.fornecedor]).sort((a,b) => a.nome.localeCompare(b.nome,'pt-BR'));
+        bg.querySelector('#ctFornList').innerHTML = fornOpts();
+        inpForn.value = r.fornecedor.nome; boxNF.style.display = 'none';
+        ['#ctNFNome','#ctNFEmail','#ctNFCnpj'].forEach(q => bg.querySelector(q).value = '');
+        toast('Fornecedor cadastrado.');
+      } catch(x){ err.textContent = (x && x.mensagem) || 'Erro ao cadastrar.'; }
+      ev.target.disabled = false;
+    });
+    bg.querySelector('#ctFCancel').addEventListener('click', voltar);
+    bg.querySelector('#ctFX').addEventListener('click', fecharModal);
+    bg.querySelector('#ctFSalvar').addEventListener('click', async ev => {
+      const payload = {
+        dataSolicitacao: bg.querySelector('#ctFData').value, numSolicitacao: bg.querySelector('#ctFSol').value.trim(),
+        engenheiro: bg.querySelector('#ctFEng').value.trim(), servico: bg.querySelector('#ctFServ').value,
+        obraNome: bg.querySelector('#ctFObra').value.trim(),
+        modelo: modSel.value, assinatura: assSel.value, oc: bg.querySelector('#ctFOc').value.trim(),
+        linkClicksign: bg.querySelector('#ctFLink').value.trim(), observacoes: bg.querySelector('#ctFObs').value.trim()
+      };
+      const obra = st.obras.find(o => o.nome === payload.obraNome); payload.obraId = obra ? (obra.obraId || '') : '';
+      const forn = acharFornecedorPorNome(inpForn.value);
+      payload.fornecedorId = forn ? forn.id : ''; payload.fornecedor = forn ? forn.nome : '';
+      let erro = '';
+      if (!forn) erro = inpForn.value.trim() ? 'Fornecedor não cadastrado. Use “+ Cadastrar fornecedor”.' : 'Informe o fornecedor.';
+      if (!erro) erro = validar(payload);
+      // a obra precisa vir da lista; na edição, manter o nome já gravado também é aceito
+      if (!erro && st.obras.length && !obra && (novo || payload.obraNome !== c.obraNome)) erro = 'Escolha a obra pela lista, para evitar nomes digitados de jeitos diferentes.';
+      if (!erro && !novo && c.etapa === 4) erro = faltaParaAssinatura(payload);
+      if (!erro && !novo && payload.dataSolicitacao){ const d2 = lerDatas(c)['2']; if (d2 && payload.dataSolicitacao > d2) erro = 'A data de início não pode ser depois da etapa seguinte (' + dataBR(d2) + ').'; }
+      if (erro){ bg.querySelector('#ctFErr').textContent = erro; return; }
+      ev.target.disabled = true;
+      try {
+        const envio = Object.assign({}, payload); delete envio.fornecedor;
+        const r = novo ? await chamar('criar', envio) : await chamar('atualizar', Object.assign({ id:c.id }, envio));
+        toast(novo ? 'Contrato cadastrado.' : 'Alterações salvas.'); await carregar(true);
+        const id = novo ? (r.contrato && r.contrato.id) : c.id; if (id) abrirDetalhe(id); else fecharModal();
+      } catch(e){ bg.querySelector('#ctFErr').textContent = (e && e.mensagem) || 'Erro ao salvar.'; ev.target.disabled = false; }
+    });
+  }
+
+  function abrirCancelar(c){
+    const bg = abrirModal(`
+      <div class="ct-modal-top"><div><h3>Cancelar contrato</h3><div class="ct-modal-sub">${esc(c.fornecedor)} · ${esc(c.obraNome)}</div></div></div>
+      <div class="ct-form"><div class="full"><label for="ctCMot">Motivo *</label><textarea class="ct-textarea" id="ctCMot" rows="3" maxlength="300" placeholder="Ex.: valor pequeno, não era necessário contrato" autofocus></textarea></div></div>
+      <div class="ct-err" id="ctCErr"></div>
+      <div class="ct-modal-foot"><div class="right"><button class="ct-btn" type="button" id="ctCVoltar">Voltar</button><button class="ct-btn danger" type="button" id="ctCOk">Cancelar contrato</button></div></div>`);
+    bg.querySelector('#ctCVoltar').addEventListener('click', () => abrirDetalhe(c.id));
+    bg.querySelector('#ctCOk').addEventListener('click', async ev => {
+      const motivo = bg.querySelector('#ctCMot').value.trim();
+      if (!motivo){ bg.querySelector('#ctCErr').textContent = 'Informe o motivo.'; return; }
+      ev.target.disabled = true;
+      try { await chamar('cancelar', { id:c.id, motivo }); fecharModal(); toast('Contrato cancelado.'); carregar(true); }
+      catch(e){ bg.querySelector('#ctCErr').textContent = (e && e.mensagem) || 'Erro.'; ev.target.disabled = false; }
+    });
+  }
+
+  function abrirUpload(c){
+    const bg = abrirModal(`
+      <div class="ct-modal-top"><div><h3>Enviar PDF assinado (Gov.br)</h3><div class="ct-modal-sub">${esc(c.fornecedor)} · ${esc(c.obraNome)} · OC ${esc(c.oc)}</div></div></div>
+      <p style="font-size:12.5px;color:var(--muted);margin:0 0 12px;">Envie o termo já assinado por todos. Ele passa para <b>Assinado</b> e o robô anexa na OC em até 1 hora.</p>
+      <input type="file" id="ctUFile" accept="application/pdf,.pdf" class="ct-input">
+      <div class="ct-err" id="ctUErr"></div>
+      <div class="ct-modal-foot"><div class="right"><button class="ct-btn" type="button" id="ctUVoltar">Voltar</button><button class="ct-btn primary" type="button" id="ctUOk">Enviar</button></div></div>`);
+    bg.querySelector('#ctUVoltar').addEventListener('click', () => abrirDetalhe(c.id));
+    bg.querySelector('#ctUOk').addEventListener('click', async ev => {
+      const f = bg.querySelector('#ctUFile').files[0]; const err = bg.querySelector('#ctUErr');
+      if (!f){ err.textContent = 'Escolha o arquivo PDF.'; return; }
+      if (!/\.pdf$/i.test(f.name) && f.type !== 'application/pdf'){ err.textContent = 'O arquivo precisa ser PDF.'; return; }
+      if (f.size > 15 * 1024 * 1024){ err.textContent = 'PDF acima de 15 MB.'; return; }
+      ev.target.disabled = true; err.textContent = 'Enviando…';
+      try {
+        const base64 = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(String(r.result).split(',')[1] || ''); r.onerror = () => rej(new Error('Falha ao ler o arquivo')); r.readAsDataURL(f); });
+        await chamar('enviarPdf', { id:c.id, nome:f.name, base64 });
+        toast('PDF enviado. O robô anexa na OC em até 1 hora.'); await carregar(true); abrirDetalhe(c.id);
+      } catch(e){ err.textContent = (e && e.mensagem) || 'Erro ao enviar.'; ev.target.disabled = false; }
+    });
+  }
+
+  // =====================================================================
+  //  EVENTOS E NAVEGAÇÃO
+  // =====================================================================
+  function ligarEventos(){
+    $('ctBtnNovo').addEventListener('click', () => abrirForm(null));
+    document.querySelectorAll('#page-contratos .ct-tab').forEach(t => t.addEventListener('click', () => { aba = t.dataset.tab; render(); }));
+    $('ctTbAnd').addEventListener('click', ev => { const row = ev.target.closest('tr.ct-row'); if (row) abrirDetalhe(row.dataset.id); });
+    $('ctTbAnd').addEventListener('keydown', ev => { if (ev.key === 'Enter'){ const row = ev.target.closest('tr.ct-row'); if (row) abrirDetalhe(row.dataset.id); } });
+    $('ctBanner').addEventListener('click', ev => {
+      if (ev.target.closest('[data-sair]')){ ev.preventDefault(); limparCodigo(); st.usuario = null; mostrarLogin('Você saiu. Digite o código para entrar de novo.'); return; }
+      const a = ev.target.closest('[data-demo]'); if (!a) return; ev.preventDefault();
+      if (a.dataset.demo === 'exemplos'){ demoExemplos(); carregar(true); }
+      if (a.dataset.demo === 'simular'){ demoSimularRobo(); toast('Execução do robô simulada.'); carregar(true); }
+      if (a.dataset.demo === 'limpar' && confirm('Apagar todos os dados da demonstração neste navegador?')){ try { localStorage.removeItem(DEMO_KEY); } catch(e){} carregar(true); }
+    });
+  }
+
+  const topo = { guardado:false, eyebrow:'', titulo:'' };
+  function aoMudarPagina(page){
+    const filtros = document.querySelector('.topbar .filters');
+    const eb = document.querySelector('.topbar .eyebrow'), h2 = document.querySelector('.topbar h2');
+    if (!topo.guardado && eb && h2){ topo.eyebrow = eb.textContent; topo.titulo = h2.textContent; topo.guardado = true; }
+    if (page === 'contratos'){
+      if (filtros) filtros.style.display = 'none';
+      if (eb) eb.textContent = 'Compras · Contratos';
+      if (h2) h2.textContent = 'Controle de contratos';
+      if (!iniciado){ iniciado = true; ligarEventos(); }
+      if (MODO_DEMO || lerCodigo()) carregar(); else mostrarLogin('');
+      clearInterval(timerAuto);
+      timerAuto = setInterval(() => {
+        if (document.visibilityState === 'visible' && window.__currentPage === 'contratos' && !document.querySelector('.ct-modal-bg') && (MODO_DEMO || lerCodigo())) carregar(true);
+      }, 120000);
+    } else {
+      if (filtros) filtros.style.display = '';
+      if (topo.guardado){ eb.textContent = topo.eyebrow; h2.textContent = topo.titulo; }
+      clearInterval(timerAuto);
+    }
+  }
+  const anterior = window.__onPageChange;
+  window.__onPageChange = function(page){
+    if (page !== 'contratos' && typeof anterior === 'function'){ try { anterior(page); } catch(e){ console.error(e); } }
+    aoMudarPagina(page);
+  };
+})();
 </script>
 </body>
 </html>
