@@ -5566,6 +5566,19 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
   const TIPOS_V = SNAP.tiposV || 1; // sobe quando o HTML passa a sugerir tipos novos
   const tiposTxt = f => (f.tipos || []).map(t => (TIPOS.find(x => x.id === t) || {}).nome).filter(Boolean).join(' + ');
   const CARTAO = ['SEM ACRÉSCIMO/LINK','SEM ACRÉSCIMO/PRESENCIAL','COM ACRÉSCIMO/LINK','COM ACRÉSCIMO/PRESENCIAL','NÃO PASSA CARTÃO'];
+  // filtro "Pagamento": mostra quem ACEITA a forma escolhida (olha as colunas Pagamento e Cartão de crédito)
+  const aceitaCartao = f => !!f.cartao && f.cartao !== 'NÃO PASSA CARTÃO';
+  const FORMAS_PAG = {
+    boleto:   ['Boleto', f => chave(f.pagamento).includes('BOLETO')],
+    transf:   ['Transferência', f => chave(f.pagamento).includes('TRANSF')],
+    pix:      ['PIX', f => chave(f.pagamento).includes('PIX')],
+    cartao:   ['Cartão de crédito (qualquer)', aceitaCartao],
+    semacr:   ['Cartão sem acréscimo', f => aceitaCartao(f) && f.cartao.startsWith('SEM ACRÉSCIMO')],
+    link:     ['Link de pagamento (cartão)', f => aceitaCartao(f) && f.cartao.includes('LINK')],
+    presenc:  ['Cartão presencial', f => aceitaCartao(f) && f.cartao.includes('PRESENCIAL')],
+    naocart:  ['Não passa cartão', f => f.cartao === 'NÃO PASSA CARTÃO'],
+    semcart:  ['Cartão não informado', f => !f.cartao],
+  };
   const st = { lista: [], sit: '', busca: '', pag: '', form: '', tipo: '', ord: 'nome', dir: 1 };
   // Respostas do formulário (Google Forms → planilha no Drive). Ficam separadas das edições feitas aqui:
   // vêm sempre do HTML e são ligadas ao fornecedor pelo id (ou pelo nome, se ainda não tiver id).
@@ -5709,7 +5722,7 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
     return st.lista.filter(f => {
       const r = respostaDe(f);
       if (st.sit && f.situacao !== st.sit) return false;
-      if (st.pag && chave(f.pagamento) !== st.pag) return false;
+      if (st.pag && FORMAS_PAG[st.pag] && !FORMAS_PAG[st.pag][1](f)) return false;
       if (st.form === 'sim' && !r) return false;
       if (st.form === 'nao' && r) return false;
       if (st.tipo === 'sem' && (f.tipos || []).length) return false;
@@ -5734,8 +5747,8 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
       ? `<div class="ct-banner demo"><span><b>Alterações só neste navegador.</b> Para todos verem, clique em <b>Baixar HTML atualizado</b> e suba o arquivo no GitHub.</span><span class="ct-demo-links"><a href="#" data-cf-descartar>Descartar alterações</a></span></div>` : '';
     $('cfChips').innerHTML = `<button type="button" class="lc-chip${st.sit ? '' : ' on'}" data-sit="" aria-pressed="${!st.sit}">Todos <span class="n">${st.lista.length}</span></button>` +
       SITS.map(s => `<button type="button" class="lc-chip${st.sit === s.id ? ' on' : ''}" data-sit="${s.id}" aria-pressed="${st.sit === s.id}">${esc(s.nome)} <span class="n">${n(s.id)}</span></button>`).join('');
-    const pags = [...new Map(st.lista.filter(f => f.pagamento).map(f => [chave(f.pagamento), f.pagamento])).entries()].sort((a, b) => a[1].localeCompare(b[1], 'pt-BR'));
-    $('cfFiltroPag').innerHTML = '<option value="">Pagamento: todos</option>' + pags.map(([k, v]) => `<option value="${esc(k)}">${esc(v)}</option>`).join('');
+    $('cfFiltroPag').innerHTML = '<option value="">Pagamento: todos</option>' + Object.keys(FORMAS_PAG).map(k =>
+      `<option value="${k}">${FORMAS_PAG[k][0]} (${st.lista.filter(FORMAS_PAG[k][1]).length})</option>`).join('');
     $('cfFiltroPag').value = st.pag; if ($('cfFiltroPag').value !== st.pag){ st.pag = ''; $('cfFiltroPag').value = ''; }
     document.querySelectorAll('.cf-table th[data-ord]').forEach(th => { th.classList.toggle('ord-asc', th.dataset.ord === st.ord && st.dir === 1); th.classList.toggle('ord-desc', th.dataset.ord === st.ord && st.dir === -1); });
     const nt = id => st.lista.filter(f => id === 'sem' ? !(f.tipos || []).length : (f.tipos || []).includes(id)).length;
