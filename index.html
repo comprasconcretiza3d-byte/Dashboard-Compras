@@ -40,6 +40,17 @@
   nav a.active{background:var(--graphite-2);color:#fff;}
   nav a.active::before{content:"";position:absolute;left:-18px;top:8px;bottom:8px;width:3px;background:var(--amber);border-radius:2px;}
   nav a:hover:not(.active){background:#22262E;color:#fff;}
+  .nav-grupo-tit{display:flex;align-items:center;gap:11px;width:100%;padding:9px 10px;border:0;border-radius:6px;background:none;color:#B7B9BF;font:inherit;font-size:13.5px;font-weight:500;margin-bottom:2px;cursor:pointer;text-align:left;}
+  .nav-grupo-tit .ic{width:16px;text-align:center;font-size:14px;}
+  .nav-grupo-tit .seta{margin-left:auto;font-size:11px;transition:transform .15s;}
+  .nav-grupo-tit:hover{background:#22262E;color:#fff;}
+  .nav-grupo.tem-ativo > .nav-grupo-tit{color:#fff;}
+  .nav-grupo.aberto > .nav-grupo-tit .seta{transform:rotate(180deg);}
+  .nav-grupo-tit:focus-visible, nav a:focus-visible{outline:2px solid var(--amber);outline-offset:1px;}
+  .nav-sub{display:none;margin:0 0 6px 18px;}
+  .nav-grupo.aberto > .nav-sub{display:block;}
+  .nav-sub a{font-size:13px;padding:7px 10px 7px 14px;}
+  .nav-sub a::after{content:"";position:absolute;left:3px;top:50%;width:4px;height:4px;margin-top:-2px;border-radius:50%;background:currentColor;opacity:.7;}
 
   .sidebar-foot{margin-top:auto;padding-top:18px;border-top:1px dashed #3A3F49;font-size:11px;color:#6A6E78;}
   .sidebar-foot b{color:#B7B9BF;}
@@ -424,18 +435,34 @@
     </div>
     <p class="brand-sub">Painel de gestão</p>
 
-    <nav>
+    <nav class="menu">
       <a class="active" data-page="dashboard"><span class="ic">▤</span> Dashboard</a>
-      <a data-page="fornecedores"><span class="ic">🏢</span> Fornecedores</a>
-      <a data-page="materiais"><span class="ic">🧱</span> Materiais</a>
+      <div class="nav-grupo" data-grupo="compras">
+        <button type="button" class="nav-grupo-tit" aria-expanded="false"><span class="ic">🛒</span> Compras <span class="seta" aria-hidden="true">▾</span></button>
+        <div class="nav-sub">
+          <a data-page="historico">Histórico</a>
+          <a data-page="economia">Economia</a>
+          <a data-page="mrp">Previsto × Realizado</a>
+          <a data-page="internas">Compras internas</a>
+          <a data-page="materiais">Materiais</a>
+        </div>
+      </div>
+      <div class="nav-grupo" data-grupo="fornecedores">
+        <button type="button" class="nav-grupo-tit" aria-expanded="false"><span class="ic">🏢</span> Fornecedores <span class="seta" aria-hidden="true">▾</span></button>
+        <div class="nav-sub">
+          <a data-page="fornecedores">Visão geral</a>
+          <a data-page="cadforn">Cadastro</a>
+        </div>
+      </div>
+      <div class="nav-grupo" data-grupo="locacao">
+        <button type="button" class="nav-grupo-tit" aria-expanded="false"><span class="ic">🚧</span> Locação <span class="seta" aria-hidden="true">▾</span></button>
+        <div class="nav-sub">
+          <a data-page="locacao">Locação por obra</a>
+          <a data-page="cadloc" data-alvo="cadforn">Fornecedores</a>
+        </div>
+      </div>
       <a data-page="obras"><span class="ic">🏗️</span> Obras</a>
-      <a data-page="internas"><span class="ic">🏢</span> Compras Internas</a>
-      <a data-page="mrp"><span class="ic">📐</span> Previsto × Realizado</a>
-      <a data-page="economia"><span class="ic">📉</span> Economia</a>
-      <a data-page="historico"><span class="ic">🗂️</span> Histórico</a>
       <a data-page="contratos"><span class="ic">📝</span> Contratos</a>
-      <a data-page="locacao"><span class="ic">🚧</span> Locação</a>
-      <a data-page="cadforn"><span class="ic">📇</span> Cadastro de fornecedores</a>
     </nav>
 
     <div class="nav-group-label">Fonte de dados</div>
@@ -1429,16 +1456,25 @@ var o=[];var l=Array.isArray(e);for(f=n.s.c;f<=n.e.c;++f)s[f]=ya(f);for(var c=n.
 // ================= NAVIGATION (isolado, roda antes de qualquer coisa que dependa de Chart.js) =================
 (function(){
   const navLinks = document.querySelectorAll('nav a[data-page]');
+  // grupos do menu (Compras, Fornecedores, Locação): abrem e fecham no título; o grupo da aba aberta fica marcado
+  const grupos = document.querySelectorAll('.nav-grupo');
+  const abrir = (g, sim) => { g.classList.toggle('aberto', sim); g.querySelector('.nav-grupo-tit').setAttribute('aria-expanded', sim ? 'true' : 'false'); };
+  grupos.forEach(g => g.querySelector('.nav-grupo-tit').addEventListener('click', () => abrir(g, !g.classList.contains('aberto'))));
+  function marcarGrupo(a){
+    grupos.forEach(g => { const tem = g.contains(a); g.classList.toggle('tem-ativo', tem); if (tem) abrir(g, true); });
+  }
+  window.__irPara = page => { const a = document.querySelector('nav a[data-page="' + page + '"]'); if (a) a.click(); };
   navLinks.forEach(a => {
     a.addEventListener('click', function(e){
       e.preventDefault();
       if (a.dataset.disabled) return;
       navLinks.forEach(x => x.classList.remove('active'));
       a.classList.add('active');
+      marcarGrupo(a);
       const page = a.dataset.page;
       window.__currentPage = page;
       document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
-      const target = document.getElementById('page-' + page);
+      const target = document.getElementById('page-' + (a.dataset.alvo || page));
       if (target) target.style.display = 'block';
       if (typeof window.__onPageChange === 'function') {
         try { window.__onPageChange(page); } catch(err){ console.error('Erro ao trocar de página:', err); }
@@ -5246,7 +5282,7 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
     const filtros = document.querySelector('.topbar .filters');
     const eb = document.querySelector('.topbar .eyebrow'), h2 = document.querySelector('.topbar h2');
     if (filtros) filtros.style.display = 'none';
-    if (eb) eb.textContent = 'Compras · Locação';
+    if (eb) eb.textContent = 'Locação · Por obra';
     if (h2) h2.textContent = 'Locação de equipamentos por obra';
     if (!iniciado){ iniciado = true; ligarEventos(); carregar(); }
     else render();
@@ -5580,6 +5616,12 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
     semcart:  ['Cartão não informado', f => !f.cartao],
   };
   const st = { lista: [], sit: '', busca: '', pag: '', form: '', tipo: '', ord: 'nome', dir: 1 };
+  // A aba Fornecedores mostra material, mão de obra, esquadrias e outros; a aba Locação mostra só os de locação.
+  // Quem é de locação e também de outro tipo aparece nas duas.
+  const ehCad = p => p === 'cadforn' || p === 'cadloc';
+  const vistaLoc = () => window.__currentPage === 'cadloc';
+  const naVista = f => { const t = f.tipos || []; return vistaLoc() ? t.includes('locacao') : !(t.length && t.every(x => x === 'locacao')); };
+  const visiveis = () => st.lista.filter(naVista);
   // Respostas do formulário (Google Forms → planilha no Drive). Ficam separadas das edições feitas aqui:
   // vêm sempre do HTML e são ligadas ao fornecedor pelo id (ou pelo nome, se ainda não tiver id).
   const FORM = SNAP.formulario || { link:'', planilha:'', ultimaImportacao:'', respostas:[] };
@@ -5719,7 +5761,7 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
   const ORDEM_SIT = { ativo:0, novo:1, inativo:2, bloqueado:3 };
   function filtrados(){
     const q = chave(st.busca);
-    return st.lista.filter(f => {
+    return visiveis().filter(f => {
       const r = respostaDe(f);
       if (st.sit && f.situacao !== st.sit) return false;
       if (st.pag && FORMAS_PAG[st.pag] && !FORMAS_PAG[st.pag][1](f)) return false;
@@ -5739,20 +5781,23 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
       });
   }
   function render(){
-    if (window.__currentPage !== 'cadforn') return;
-    const n = id => st.lista.filter(f => f.situacao === id).length;
-    $('cfKTotal').textContent = st.lista.length; $('cfKAtivo').textContent = n('ativo'); $('cfKNovo').textContent = n('novo');
+    if (!ehCad(window.__currentPage)) return;
+    const vis = visiveis();
+    const n = id => vis.filter(f => f.situacao === id).length;
+    $('cfKTotal').textContent = vis.length; $('cfKAtivo').textContent = n('ativo'); $('cfKNovo').textContent = n('novo');
     $('cfKInativo').textContent = n('inativo'); $('cfKBloq').textContent = n('bloqueado');
     $('cfBanner').innerHTML = pendente()
       ? `<div class="ct-banner demo"><span><b>Alterações só neste navegador.</b> Para todos verem, clique em <b>Baixar HTML atualizado</b> e suba o arquivo no GitHub.</span><span class="ct-demo-links"><a href="#" data-cf-descartar>Descartar alterações</a></span></div>` : '';
-    $('cfChips').innerHTML = `<button type="button" class="lc-chip${st.sit ? '' : ' on'}" data-sit="" aria-pressed="${!st.sit}">Todos <span class="n">${st.lista.length}</span></button>` +
+    $('cfChips').innerHTML = `<button type="button" class="lc-chip${st.sit ? '' : ' on'}" data-sit="" aria-pressed="${!st.sit}">Todos <span class="n">${vis.length}</span></button>` +
       SITS.map(s => `<button type="button" class="lc-chip${st.sit === s.id ? ' on' : ''}" data-sit="${s.id}" aria-pressed="${st.sit === s.id}">${esc(s.nome)} <span class="n">${n(s.id)}</span></button>`).join('');
     $('cfFiltroPag').innerHTML = '<option value="">Pagamento: todos</option>' + Object.keys(FORMAS_PAG).map(k =>
-      `<option value="${k}">${FORMAS_PAG[k][0]} (${st.lista.filter(FORMAS_PAG[k][1]).length})</option>`).join('');
+      `<option value="${k}">${FORMAS_PAG[k][0]} (${vis.filter(FORMAS_PAG[k][1]).length})</option>`).join('');
     $('cfFiltroPag').value = st.pag; if ($('cfFiltroPag').value !== st.pag){ st.pag = ''; $('cfFiltroPag').value = ''; }
     document.querySelectorAll('.cf-table th[data-ord]').forEach(th => { th.classList.toggle('ord-asc', th.dataset.ord === st.ord && st.dir === 1); th.classList.toggle('ord-desc', th.dataset.ord === st.ord && st.dir === -1); });
-    const nt = id => st.lista.filter(f => id === 'sem' ? !(f.tipos || []).length : (f.tipos || []).includes(id)).length;
-    $('cfFiltroTipo').innerHTML = `<option value="">Tipo: todos</option>` + TIPOS.map(t => `<option value="${t.id}">${esc(t.nome)} (${nt(t.id)})</option>`).join('') + `<option value="sem">Sem tipo definido (${nt('sem')})</option>`;
+    const nt = id => vis.filter(f => id === 'sem' ? !(f.tipos || []).length : (f.tipos || []).includes(id)).length;
+    $('cfFiltroTipo').style.display = vistaLoc() ? 'none' : '';
+    if (vistaLoc() || st.tipo === 'locacao') st.tipo = '';
+    $('cfFiltroTipo').innerHTML = `<option value="">Tipo: todos</option>` + TIPOS.filter(t => t.id !== 'locacao').map(t => `<option value="${t.id}">${esc(t.nome)} (${nt(t.id)})</option>`).join('') + `<option value="sem">Sem tipo definido (${nt('sem')})</option>`;
     $('cfFiltroTipo').value = st.tipo;
     renderFormulario();
     const lista = filtrados();
@@ -5813,7 +5858,7 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
   function abrirEditor(id, origem){
     const f = id ? st.lista.find(x => x.id === id) : null;
     if (id && !f) return;
-    const v = f || { tipos: st.tipo && st.tipo !== 'sem' ? [st.tipo] : [], nome:'', situacao: st.sit || 'ativo', motivo:'', prazo:'', pagamento:'', nf:'', cartao:'', contato:'', obs:'', desde:'' };
+    const v = f || { tipos: vistaLoc() ? ['locacao'] : st.tipo && st.tipo !== 'sem' ? [st.tipo] : [], nome:'', situacao: st.sit || 'ativo', motivo:'', prazo:'', pagamento:'', nf:'', cartao:'', contato:'', obs:'', desde:'' };
     const sugest = campo => [...new Set(st.lista.map(x => x[campo]).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR', { numeric:true }));
     const pagSug = [...new Set(sugest('pagamento').concat(['BOLETO','TRANSFERÊNCIA','BOLETO/TRANSFERÊNCIA','PIX','CARTÃO']))];
     const bg = L.abrirJanela(`
@@ -5938,11 +5983,11 @@ document.getElementById('intSearch').addEventListener('input', () => { intPageId
     });
   }
   function aoMudarPagina(page){
-    if (page !== 'cadforn') return;
+    if (!ehCad(page)) return;
     const filtros = document.querySelector('.topbar .filters'), eb = document.querySelector('.topbar .eyebrow'), h2 = document.querySelector('.topbar h2');
     if (filtros) filtros.style.display = 'none';
-    if (eb) eb.textContent = 'Compras · Fornecedores';
-    if (h2) h2.textContent = 'Cadastro de fornecedores';
+    if (eb) eb.textContent = page === 'cadloc' ? 'Locação · Fornecedores' : 'Fornecedores · Cadastro';
+    if (h2) h2.textContent = page === 'cadloc' ? 'Fornecedores de locação' : 'Cadastro de fornecedores';
     if (!iniciado){ iniciado = true; ligar(); }
     carregar();
   }
